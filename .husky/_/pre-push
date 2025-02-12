@@ -1,4 +1,2 @@
 #!/usr/bin/env sh
-for commit in $(git rev-list ${{ github.base_ref }}..${{ github.head_ref }}) ; do
-  yarn commitlint --from $commit --to HEAD --verbose
-done
+. "$(dirname "$0")/h"

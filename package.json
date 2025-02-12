@@ -15,6 +15,7 @@
     "postinstall": "husky"
   },
   "dependencies": {
+    "@tanstack/react-router": "1.102.5",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },
@@ -23,6 +24,8 @@
     "@commitlint/config-conventional": "19.7.1",
     "@faker-js/faker": "9.5.0",
     "@stylistic/eslint-plugin": "3.1.0",
+    "@tanstack/router-devtools": "1.102.5",
+    "@tanstack/router-plugin": "1.102.5",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
