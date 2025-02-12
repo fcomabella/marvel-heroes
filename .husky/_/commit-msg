@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-yarn commitlint $1
+yarn commitlint --edit ${1}
