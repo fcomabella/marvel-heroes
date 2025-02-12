@@ -11,8 +11,7 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "test:ci": "vitest run",
-    "test:ci:coverage": "vitest run --coverage",
-    "postinstall": "husky"
+    "test:ci:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@tanstack/react-router": "1.102.5",
