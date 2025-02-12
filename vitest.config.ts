@@ -10,6 +10,9 @@ export default mergeConfig(
       setupFiles: './src/__tests__/setup.ts',
       clearMocks: true,
       coverage: {
+        thresholds: {
+          '100': true,
+        },
         enabled: false,
         provider: 'v8',
         reporter: ['lcov', 'text', 'text-summary', 'cobertura'],
