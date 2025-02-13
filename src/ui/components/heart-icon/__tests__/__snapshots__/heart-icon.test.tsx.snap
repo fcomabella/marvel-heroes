@@ -3,7 +3,9 @@
 exports[`HeartIcon component > Should render the default heart 1`] = `
 <div>
   <svg
+    aria-hidden="true"
     fill="none"
+    focusable="false"
     height="22"
     viewBox="0 0 24 22"
     width="24"
@@ -22,7 +24,9 @@ exports[`HeartIcon component > Should render the default heart 1`] = `
 exports[`HeartIcon component > Should render the unselected heart 1`] = `
 <div>
   <svg
+    aria-hidden="true"
     fill="none"
+    focusable="false"
     height="25"
     viewBox="0 0 26 25"
     width="26"

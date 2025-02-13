@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MarvelLogo } from './marvel-logo';
+import { MarvelLogo as MarvelLogoComponent } from './marvel-logo';
 
-const meta: Meta<typeof MarvelLogo> = {
-  component: MarvelLogo,
+const meta: Meta<typeof MarvelLogoComponent> = {
+  component: MarvelLogoComponent,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof MarvelLogo>;
+type Story = StoryObj<typeof MarvelLogoComponent>;
 
-export const Logo: Story = {};
+export const MarvelLogo: Story = {};
