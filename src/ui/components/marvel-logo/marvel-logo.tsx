@@ -1,7 +1,9 @@
 import { ReactNode } from '@tanstack/react-router';
+import { HTMLAttributes } from 'react';
 
-export const MarvelLogo = (): ReactNode => (
+export const MarvelLogo = (props: HTMLAttributes<SVGElement>): ReactNode => (
   <svg
+    {...props}
     width="130"
     height="52"
     viewBox="0 0 130 52"
