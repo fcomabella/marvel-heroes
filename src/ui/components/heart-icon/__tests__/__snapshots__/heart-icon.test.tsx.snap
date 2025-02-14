@@ -4,6 +4,7 @@ exports[`HeartIcon component > Should render the default heart 1`] = `
 <div>
   <svg
     aria-hidden="true"
+    data-testid="selected-heart"
     fill="none"
     focusable="false"
     height="22"
@@ -25,6 +26,7 @@ exports[`HeartIcon component > Should render the unselected heart 1`] = `
 <div>
   <svg
     aria-hidden="true"
+    data-testid="unselected-heart"
     fill="none"
     focusable="false"
     height="25"

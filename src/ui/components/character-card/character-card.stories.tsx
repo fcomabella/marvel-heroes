@@ -11,8 +11,11 @@ type Story = StoryObj<typeof CharacterCardComponent>;
 
 export const CharacterCard: Story = {
   args: {
-    name: 'test hero',
-    image: 'example-hero.png',
-    isFavorite: false,
+    character: {
+      name: 'test hero',
+      thumbnail: 'example-hero.png',
+      isFavorite: false,
+      id: 1,
+    },
   },
 };

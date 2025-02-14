@@ -7,5 +7,6 @@ export const CharacterCardHeroName = styled('p')({
   alignSelf: 'center',
   color: '#fff',
   textTransform: 'uppercase',
+  textDecoration: 'none',
   padding: '8px',
 });

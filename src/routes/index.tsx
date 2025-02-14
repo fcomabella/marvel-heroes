@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { CharactersProvider } from '@ui/characters/contexts/characters';
+import { CharacterList } from '@ui/characters/widgets/character-list';
 import { ReactNode } from 'react';
 
-function Index(): ReactNode {
-  return (
-    <div className="p-2">
-      <h3>Welcome Home!</h3>
-    </div>
-  );
-}
+const Index = (): ReactNode => (
+  <CharactersProvider>
+    <CharacterList />
+  </CharactersProvider>
+);
 
 export const Route = createFileRoute('/')({
   component: Index,

@@ -1,5 +1,5 @@
+import { CharacterSummary } from '@ui/characters/models';
+
 export interface CharacterCardProps {
-  name: string;
-  image: string;
-  isFavorite?: boolean;
+  character: CharacterSummary;
 }

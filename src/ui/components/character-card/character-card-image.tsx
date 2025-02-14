@@ -9,6 +9,7 @@ const CharacterCardImageContainer = styled('div')({
     height: '100%',
     width: '100%',
     objectFit: 'cover',
+    contentVisibility: 'auto',
   },
 });
 
@@ -16,6 +17,6 @@ export const CharacterCardImage = (
   props: HTMLProps<HTMLImageElement>
 ): ReactNode => (
   <CharacterCardImageContainer>
-    <img {...props} />
+    <img {...props} loading="lazy" decoding="async" />
   </CharacterCardImageContainer>
 );
