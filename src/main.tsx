@@ -4,6 +4,8 @@ import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { CssReset } from '@ui/components/css-reset';
+import '@fontsource/roboto-condensed/400.css';
 
 const rootElement = document.createElement('div');
 rootElement.setAttribute('id', 'root');
@@ -26,6 +28,7 @@ declare module '@tanstack/react-router' {
 
 createRoot(rootElement).render(
   <StrictMode>
+    <CssReset />
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <ReactQueryDevtools />

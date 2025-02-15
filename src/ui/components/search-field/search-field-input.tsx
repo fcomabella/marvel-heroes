@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const SearchFieldInput = styled('input')({
+  fontFamily: '"Roboto Condensed", sans-serif',
+  fontSize: '1rem',
   background: 'transparent',
   border: 'none',
   flexGrow: 1,
