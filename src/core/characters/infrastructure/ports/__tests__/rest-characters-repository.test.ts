@@ -1,7 +1,8 @@
-import { CharacterMother } from '@core/characters/domain/__mocks__/character-mother';
+import { CharacterMother } from '@core/characters/domain/models/__mocks__/character-mother';
 import { RestCharactersRepository } from '@core/characters/infrastructure/ports/rest-characters-repository';
 import { DEFAULT_RETURN_LIMIT } from '@core/shared/infrastructure/constants';
 import { WrapperMother } from '@__mocks__/wrapper-mother';
+import { CHARACTERS_BASE_URL } from '@core/characters/infrastructure/constants';
 
 const fetchFnMock = vi.fn<(url: URL) => Promise<unknown>>(async () =>
   WrapperMother(CharacterMother)
@@ -76,6 +77,39 @@ describe('RestCharactersRepository', () => {
       const [[URLParam]] = calls;
 
       expect(URLParam.searchParams.get('nameStartsWith')).toEqual('spiderman');
+    });
+
+    it('Should throw', async () => {
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      fetchFnMock.mockResolvedValueOnce('non compliant');
+
+      expect(() => repository.searchCharacters('spiderman')).rejects.toThrow();
+    });
+  });
+
+  describe('getCharacterById method', () => {
+    it('Should call the fetchFn with the character id', async () => {
+      const id = 'test-id';
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      await repository.getCharacterById(id);
+
+      const calls = fetchFnMock.mock.calls;
+
+      expect(calls.length).toEqual(1);
+
+      const [[URLParam]] = calls;
+
+      expect(URLParam.href).toEqual(`${CHARACTERS_BASE_URL}/${id}`);
+    });
+
+    it('Should throw', async () => {
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      fetchFnMock.mockResolvedValueOnce('non compliant');
+
+      expect(() => repository.getCharacterById('spiderman')).rejects.toThrow();
     });
   });
 });

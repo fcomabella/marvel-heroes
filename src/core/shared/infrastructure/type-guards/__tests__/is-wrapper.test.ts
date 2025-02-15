@@ -1,4 +1,4 @@
-import { CharacterMother } from '@core/characters/domain/__mocks__/character-mother';
+import { CharacterMother } from '@core/characters/domain/models/__mocks__/character-mother';
 import { characterDtoSchema } from '@core/characters/infrastructure/schemas';
 import { isWrapper } from '@core/shared/infrastructure/type-guards/is-wrapper';
 import { WrapperMother } from '@__mocks__/wrapper-mother';
@@ -15,6 +15,6 @@ describe('isWrapper', () => {
 
     delete toParse.code;
 
-    expect(() => isWrapper(toParse, characterDtoSchema)).toThrowError();
+    expect(isWrapper(toParse, characterDtoSchema)).toStrictEqual(false);
   });
 });

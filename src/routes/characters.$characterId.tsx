@@ -1,4 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { CharacterProvider } from '@ui/characters/contexts/character';
+import { Character } from '@ui/characters/widgets/character';
+import { Header } from '@ui/components/header';
 import { ReactNode } from 'react';
 
 export const Route = createFileRoute('/characters/$characterId')({
@@ -6,6 +9,9 @@ export const Route = createFileRoute('/characters/$characterId')({
 });
 
 function RouteComponent(): ReactNode {
-  const { characterId } = Route.useParams();
-  return <div>Hello "/characters/${characterId}"!</div>;
+  return (
+    <CharacterProvider Header={Header}>
+      <Character />
+    </CharacterProvider>
+  );
 }

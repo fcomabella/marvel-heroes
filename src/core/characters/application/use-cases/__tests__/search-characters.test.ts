@@ -1,9 +1,8 @@
 import { SearchCharacters } from '@core/characters/application/use-cases/search-characters';
-
-const searchCharactersMock = vi.fn();
-const repositoryMock = {
-  searchCharacters: searchCharactersMock,
-};
+import {
+  charactersRepositoryMock,
+  searchCharactersMock,
+} from '@core/characters/domain/ports/__mocks__/characters-repository-mock';
 
 describe('SearchCharacters use case', () => {
   it('Should be a function', () => {
@@ -12,15 +11,15 @@ describe('SearchCharacters use case', () => {
 
   it('Should return a Function', () => {
     const useCase = SearchCharacters({
-      charactersRepository: repositoryMock,
+      charactersRepository: charactersRepositoryMock,
     });
 
     expect(useCase).toBeInstanceOf(Function);
   });
 
-  it('Should call the searchCharacters with the search term and the limit', () => {
+  it('Should call the searchCharacters method with the search term and the limit', () => {
     const useCase = SearchCharacters({
-      charactersRepository: repositoryMock,
+      charactersRepository: charactersRepositoryMock,
     });
 
     useCase();

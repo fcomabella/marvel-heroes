@@ -4,6 +4,7 @@ import {
 } from '@__tests__/render-with-query-provider';
 import {
   createRootRoute,
+  createRoute,
   createRouter,
   RouterProvider,
 } from '@tanstack/react-router';
@@ -11,7 +12,27 @@ import { RenderResult } from '@testing-library/react';
 import { ReactNode } from 'react';
 
 const rootRoute = createRootRoute();
-const router = createRouter({ routeTree: rootRoute });
+
+const charactersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: 'characters',
+});
+
+const charactersIndexRoute = createRoute({
+  getParentRoute: () => charactersRoute,
+  path: '/',
+});
+
+const characterRoute = createRoute({
+  getParentRoute: () => charactersIndexRoute,
+  path: '$characterId',
+});
+
+const routeTree = rootRoute.addChildren([
+  charactersRoute.addChildren([charactersIndexRoute, characterRoute]),
+]);
+
+const router = createRouter({ routeTree });
 
 export const renderWithRouter = (
   ui: ReactNode,

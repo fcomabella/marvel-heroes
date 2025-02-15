@@ -30,6 +30,21 @@ export const RestCharactersRepository: CharactersRepository = ({ fetchFn }) => {
       ) {
         return wrapper.data;
       }
+
+      throw new Error('Server has sent invalid data');
+    },
+    getCharacterById: async (id): SearchCharactersResult => {
+      const url = new URL(`${CHARACTERS_BASE_URL}/${id}`);
+
+      const wrapper = await fetchFn(url);
+
+      if (
+        isWrapper<Character, CharacterDtoSchema>(wrapper, characterDtoSchema)
+      ) {
+        return wrapper.data;
+      }
+
+      throw new Error('Server has sent invalid data');
     },
   };
 };

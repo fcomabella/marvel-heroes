@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const CharacterCardHeroName = styled('p')({
+export const CharacterCardName = styled('p')({
   gridRowStart: 2,
   gridColumnStart: 1,
   justifySelf: 'start',

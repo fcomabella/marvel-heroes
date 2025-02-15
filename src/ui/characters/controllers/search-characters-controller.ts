@@ -31,11 +31,6 @@ export const SearchCharactersController = ({
 }): SearchCharactersControllerResult => {
   return async (search?: string, limit?: number) => {
     const searchResult = await searchCharactersUseCase(search, limit);
-
-    if (!searchResult) {
-      return { results: 0, characters: [] };
-    }
-
     return mapper(searchResult);
   };
 };

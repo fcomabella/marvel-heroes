@@ -34,7 +34,7 @@ export const CharactersProvider = ({
   if (isError) {
     return (
       <CharactersProviderRoot>
-        <p>Error: {error?.message || 'Unknown error'}</p>;
+        <p>Error: {error?.message || 'Unknown error'}</p>
       </CharactersProviderRoot>
     );
   }

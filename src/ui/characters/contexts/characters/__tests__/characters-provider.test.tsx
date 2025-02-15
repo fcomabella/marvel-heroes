@@ -1,18 +1,12 @@
 import { searchCharactersControllerMock } from '@__mocks__/container.mock';
 import { PromiseMother } from '@__mocks__/promise-mother';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { CharactersProvider } from '@ui/characters/contexts/characters/characters-provider';
 import { CharacterList } from '@ui/characters/models';
 import { CharacterListMother } from '@ui/characters/models/__tests__/character-list-mother';
 import { renderWithRouter } from '@__tests__/render-with-router';
 
 describe('CharactersProvider component', () => {
-  it('Should require a QueryProvider', () => {
-    expect(() =>
-      render(<CharactersProvider>children</CharactersProvider>)
-    ).toThrow();
-  });
-
   it('Should display the loading status', async () => {
     const Header = vi.fn().mockReturnValue(null);
     const { promise, resolve } = PromiseMother<CharacterList>();

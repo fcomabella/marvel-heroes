@@ -4,7 +4,7 @@ import { CharacterListMother } from '@ui/characters/models/__tests__/character-l
 import { CharacterList } from '@ui/characters/widgets/character-list/character-list';
 import { renderWithCharactersProvider } from '@__tests__/render-with-characters-provider';
 
-describe('CharacterListWidget', () => {
+describe('CharacterList widget', () => {
   it('Should be used inside a CharactersContextProvider', () => {
     expect(() => render(<CharacterList />)).toThrow();
   });
