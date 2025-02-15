@@ -12,8 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root';
 import { Route as FavoritesImport } from './routes/favorites';
-import { Route as AboutImport } from './routes/about';
 import { Route as IndexImport } from './routes/index';
+import { Route as CharactersCharacterIdImport } from './routes/characters.$characterId';
 
 // Create/Update Routes
 
@@ -23,15 +23,15 @@ const FavoritesRoute = FavoritesImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any);
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const CharactersCharacterIdRoute = CharactersCharacterIdImport.update({
+  id: '/characters/$characterId',
+  path: '/characters/$characterId',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -46,18 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport;
       parentRoute: typeof rootRoute;
     };
-    '/about': {
-      id: '/about';
-      path: '/about';
-      fullPath: '/about';
-      preLoaderRoute: typeof AboutImport;
-      parentRoute: typeof rootRoute;
-    };
     '/favorites': {
       id: '/favorites';
       path: '/favorites';
       fullPath: '/favorites';
       preLoaderRoute: typeof FavoritesImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/characters/$characterId': {
+      id: '/characters/$characterId';
+      path: '/characters/$characterId';
+      fullPath: '/characters/$characterId';
+      preLoaderRoute: typeof CharactersCharacterIdImport;
       parentRoute: typeof rootRoute;
     };
   }
@@ -67,42 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
-  '/about': typeof AboutRoute;
   '/favorites': typeof FavoritesRoute;
+  '/characters/$characterId': typeof CharactersCharacterIdRoute;
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
-  '/about': typeof AboutRoute;
   '/favorites': typeof FavoritesRoute;
+  '/characters/$characterId': typeof CharactersCharacterIdRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
   '/': typeof IndexRoute;
-  '/about': typeof AboutRoute;
   '/favorites': typeof FavoritesRoute;
+  '/characters/$characterId': typeof CharactersCharacterIdRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/about' | '/favorites';
+  fullPaths: '/' | '/favorites' | '/characters/$characterId';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/about' | '/favorites';
-  id: '__root__' | '/' | '/about' | '/favorites';
+  to: '/' | '/favorites' | '/characters/$characterId';
+  id: '__root__' | '/' | '/favorites' | '/characters/$characterId';
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
-  AboutRoute: typeof AboutRoute;
   FavoritesRoute: typeof FavoritesRoute;
+  CharactersCharacterIdRoute: typeof CharactersCharacterIdRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   FavoritesRoute: FavoritesRoute,
+  CharactersCharacterIdRoute: CharactersCharacterIdRoute,
 };
 
 export const routeTree = rootRoute
@@ -116,18 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about",
-        "/favorites"
+        "/favorites",
+        "/characters/$characterId"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/about": {
-      "filePath": "about.tsx"
-    },
     "/favorites": {
       "filePath": "favorites.tsx"
+    },
+    "/characters/$characterId": {
+      "filePath": "characters.$characterId.tsx"
     }
   }
 }

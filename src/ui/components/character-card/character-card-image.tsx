@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { ReactNode } from '@tanstack/react-router';
-import { HTMLProps } from 'react';
+import { Link, ReactNode } from '@tanstack/react-router';
+import { CharacterSummary } from '@ui/characters/models';
 
 const CharacterCardImageContainer = styled('div')({
   gridColumnStart: 'span 2',
   gridRowStart: 1,
-  '&>img': {
+  '& img': {
     height: '100%',
     width: '100%',
     objectFit: 'cover',
@@ -13,10 +13,16 @@ const CharacterCardImageContainer = styled('div')({
   },
 });
 
-export const CharacterCardImage = (
-  props: HTMLProps<HTMLImageElement>
-): ReactNode => (
+export interface CharacterCardImageProps {
+  character: CharacterSummary;
+}
+
+export const CharacterCardImage = ({
+  character: { id, thumbnail },
+}: CharacterCardImageProps): ReactNode => (
   <CharacterCardImageContainer>
-    <img {...props} loading="lazy" decoding="async" />
+    <Link to="/characters/$characterId" params={{ characterId: id.toString() }}>
+      <img src={thumbnail} loading="lazy" decoding="async" />
+    </Link>
   </CharacterCardImageContainer>
 );

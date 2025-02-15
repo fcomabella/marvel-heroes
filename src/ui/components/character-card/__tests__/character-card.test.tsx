@@ -1,14 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { CharacterCard } from '../character-card';
 import { CharacterCardProps } from '../character-card-props';
 import { HeartIcon, HeartIconProps } from '@ui/components/heart-icon';
 import { CharacterSummary } from '@ui/characters/models';
+import { renderWithRouter } from '@__tests__/render-with-router';
 
 vi.mock('@ui/components/heart-icon', () => ({
   HeartIcon: vi.fn(),
 }));
 describe('CharacterCard component', () => {
-  it('Should render', () => {
+  it('Should render', async () => {
     const character: CharacterSummary = {
       id: 1,
       isFavorite: false,
@@ -17,7 +18,7 @@ describe('CharacterCard component', () => {
     };
 
     const props: CharacterCardProps = { character };
-    render(<CharacterCard {...props} />);
+    await act(() => renderWithRouter(<CharacterCard {...props} />));
 
     expect(screen.getByRole('paragraph')).toHaveTextContent(character.name);
     expect(screen.getByRole('img')).toHaveAttribute('src', character.thumbnail);
@@ -27,7 +28,7 @@ describe('CharacterCard component', () => {
     );
   });
 
-  it('Should render favorite', () => {
+  it('Should render favorite', async () => {
     const character: CharacterSummary = {
       id: 1,
       isFavorite: true,
@@ -37,7 +38,7 @@ describe('CharacterCard component', () => {
 
     const props: CharacterCardProps = { character };
 
-    render(<CharacterCard {...props} />);
+    await act(() => renderWithRouter(<CharacterCard {...props} />));
 
     expect(screen.getByRole('paragraph')).toHaveTextContent(character.name);
     expect(screen.getByRole('img')).toHaveAttribute('src', character.thumbnail);
