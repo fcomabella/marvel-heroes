@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-yarn test:ci:coverage
+yarn tsc && yarn test:ci:coverage

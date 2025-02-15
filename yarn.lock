@@ -2171,6 +2171,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/zod-adapter@npm:1.105.0":
+  version: 1.105.0
+  resolution: "@tanstack/zod-adapter@npm:1.105.0"
+  peerDependencies:
+    "@tanstack/react-router": ">=1.43.2"
+    zod: ^3.23.8
+  checksum: 10c0/668d27129fa7ee5feb358cfc470aae83782b59469bbd7ba2deeb191786ac9d1869063669a06b75795ee83ee6fc378539af877231cd45b44dd4316672206c49e4
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:10.4.0":
   version: 10.4.0
   resolution: "@testing-library/dom@npm:10.4.0"
@@ -2532,6 +2542,16 @@ __metadata:
     "@typescript-eslint/types": "npm:8.24.0"
     eslint-visitor-keys: "npm:^4.2.0"
   checksum: 10c0/ae3dcabbeb5213282806de1a7bc31c657189aae4225f2847356bc3110de46a43a82595634e0f123f6c8ca53ae6520c2acf7ac59a91eeb83c0f763166e3982f5c
+  languageName: node
+  linkType: hard
+
+"@uidotdev/usehooks@npm:2.4.1":
+  version: 2.4.1
+  resolution: "@uidotdev/usehooks@npm:2.4.1"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: 10c0/181c43fb324dbe4fef9762c61ab4b8235efa48abedf39a9bfeab65872522c43dae789c4f85b82a1164ed7bb18ae7ff25c3a19e7c4e0eb944937ac7f8109cee9b
   languageName: node
   linkType: hard
 
@@ -5166,6 +5186,7 @@ __metadata:
     "@tanstack/react-router": "npm:1.102.5"
     "@tanstack/router-devtools": "npm:1.102.5"
     "@tanstack/router-plugin": "npm:1.102.5"
+    "@tanstack/zod-adapter": "npm:1.105.0"
     "@testing-library/dom": "npm:10.4.0"
     "@testing-library/jest-dom": "npm:6.6.3"
     "@testing-library/react": "npm:16.2.0"
@@ -5174,6 +5195,7 @@ __metadata:
     "@types/react": "npm:19.0.8"
     "@types/react-dom": "npm:19.0.3"
     "@typescript-eslint/utils": "npm:8.24.0"
+    "@uidotdev/usehooks": "npm:2.4.1"
     "@vitejs/plugin-react": "npm:^4.3.4"
     "@vitest/coverage-v8": "npm:3.0.5"
     awilix: "npm:12.0.4"

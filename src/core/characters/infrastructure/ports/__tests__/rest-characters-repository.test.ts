@@ -1,7 +1,7 @@
 import { CharacterMother } from '@core/characters/domain/__mocks__/character-mother';
 import { RestCharactersRepository } from '@core/characters/infrastructure/ports/rest-characters-repository';
 import { DEFAULT_RETURN_LIMIT } from '@core/shared/infrastructure/constants';
-import { WrapperMother } from 'src/__mocks__/wrapper-mother';
+import { WrapperMother } from '@__mocks__/wrapper-mother';
 
 const fetchFnMock = vi.fn<(url: URL) => Promise<unknown>>(async () =>
   WrapperMother(CharacterMother)

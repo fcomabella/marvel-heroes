@@ -1,6 +1,6 @@
 import { Wrapper } from '@core/shared/domain/models';
 import { faker } from '@faker-js/faker';
-import { ContainerMother } from 'src/__mocks__/container-mother';
+import { ContainerMother } from '@__mocks__/container-mother';
 
 export const WrapperMother = <T extends object>(
   ContainedMother: () => T

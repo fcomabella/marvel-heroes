@@ -3,9 +3,7 @@
     "composite": false,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "target": "ES2022",
-    "lib": [
-      "ES2023"
-    ],
+    "lib": ["ES2023"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -22,26 +20,15 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": "./",
     "paths": {
-      "@__tests__/*": [
-        "src/__tests__/*"
-      ],
-      "@config/*": [
-        "src/config/*"
-      ],
-      "@core/*": [
-        "src/core/*"
-      ],
-      "@ui/*": [
-        "src/ui/*"
-      ],
+      "@__mocks__/*": ["src/__mocks__/*"],
+      "@__tests__/*": ["src/__tests__/*"],
+      "@config/*": ["src/config/*"],
+      "@core/*": ["src/core/*"],
+      "@ui/*": ["src/ui/*"]
     },
     "useUnknownInCatchVariables": true,
     "strictNullChecks": true,
-    "types": [
-      "vitest/globals"
-    ],
+    "types": ["vitest/globals"]
   },
-  "include": [
-    "vite.config.ts"
-  ]
+  "include": ["vite.config.ts"]
 }

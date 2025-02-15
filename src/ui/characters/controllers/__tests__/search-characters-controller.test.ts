@@ -3,7 +3,7 @@ import { CharacterMother } from '@core/characters/domain/__mocks__/character-mot
 import { SearchCharactersController } from '@ui/characters/controllers/search-characters-controller';
 import { CharacterList, CharacterSummary } from '@ui/characters/models';
 import { getImageUrl } from '@ui/shared/utils';
-import { ContainerMother } from 'src/__mocks__/container-mother';
+import { ContainerMother } from '@__mocks__/container-mother';
 
 const searchCharactersUseCaseMock = vi.fn<SearchCharactersUseCaseResult>();
 

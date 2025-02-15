@@ -7,11 +7,7 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -29,26 +25,15 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": "./",
     "paths": {
-      "@__tests__/*": [
-        "src/__tests__/*"
-      ],
-      "@config/*": [
-        "src/config/*"
-      ],
-      "@core/*": [
-        "src/core/*"
-      ],
-      "@ui/*": [
-        "src/ui/*"
-      ],
+      "@__mocks__/*": ["src/__mocks__/*"],
+      "@__tests__/*": ["src/__tests__/*"],
+      "@config/*": ["src/config/*"],
+      "@core/*": ["src/core/*"],
+      "@ui/*": ["src/ui/*"]
     },
-    "types": [
-      "vitest/globals"
-    ],
+    "types": ["vitest/globals"],
     "useUnknownInCatchVariables": true,
     "strictNullChecks": true
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

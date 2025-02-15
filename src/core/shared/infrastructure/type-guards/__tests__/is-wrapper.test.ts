@@ -1,7 +1,7 @@
 import { CharacterMother } from '@core/characters/domain/__mocks__/character-mother';
 import { characterDtoSchema } from '@core/characters/infrastructure/schemas';
 import { isWrapper } from '@core/shared/infrastructure/type-guards/is-wrapper';
-import { WrapperMother } from 'src/__mocks__/wrapper-mother';
+import { WrapperMother } from '@__mocks__/wrapper-mother';
 
 describe('isWrapper', () => {
   it('Should be succesful', () => {

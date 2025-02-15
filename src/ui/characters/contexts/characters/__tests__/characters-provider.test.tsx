@@ -1,10 +1,10 @@
-import { searchCharactersControllerMock } from 'src/__mocks__/container.mock';
-import { PromiseMother } from 'src/__mocks__/promise-mother';
-import { renderWithQueryProvider } from '@__tests__/render-with-query-provider';
+import { searchCharactersControllerMock } from '@__mocks__/container.mock';
+import { PromiseMother } from '@__mocks__/promise-mother';
 import { render, screen, waitFor } from '@testing-library/react';
 import { CharactersProvider } from '@ui/characters/contexts/characters/characters-provider';
 import { CharacterList } from '@ui/characters/models';
 import { CharacterListMother } from '@ui/characters/models/__tests__/character-list-mother';
+import { renderWithRouter } from '@__tests__/render-with-router';
 
 describe('CharactersProvider component', () => {
   it('Should require a QueryProvider', () => {
@@ -14,15 +14,16 @@ describe('CharactersProvider component', () => {
   });
 
   it('Should display the loading status', async () => {
+    const Header = vi.fn().mockReturnValue(null);
     const { promise, resolve } = PromiseMother<CharacterList>();
 
     searchCharactersControllerMock.mockReturnValue(promise);
 
-    renderWithQueryProvider(<CharactersProvider>children</CharactersProvider>);
+    renderWithRouter(
+      <CharactersProvider Header={Header}>children</CharactersProvider>
+    );
 
-    const loading = screen.getByRole('paragraph');
-
-    expect(loading).toHaveTextContent(/loading.../i);
+    expect(Header).toHaveBeenCalledWith({ isLoading: true }, undefined);
 
     resolve(CharacterListMother());
 
@@ -36,7 +37,7 @@ describe('CharactersProvider component', () => {
 
     searchCharactersControllerMock.mockReturnValue(promise);
 
-    renderWithQueryProvider(<CharactersProvider>children</CharactersProvider>, {
+    renderWithRouter(<CharactersProvider>children</CharactersProvider>, {
       queryConfig: { defaultOptions: { queries: { retry: false } } },
     });
 
@@ -55,7 +56,7 @@ describe('CharactersProvider component', () => {
 
     searchCharactersControllerMock.mockReturnValue(promise);
 
-    renderWithQueryProvider(<CharactersProvider>children</CharactersProvider>, {
+    renderWithRouter(<CharactersProvider>children</CharactersProvider>, {
       queryConfig: { defaultOptions: { queries: { retry: false } } },
     });
 
@@ -73,7 +74,7 @@ describe('CharactersProvider component', () => {
 
     searchCharactersControllerMock.mockReturnValue(promise);
 
-    renderWithQueryProvider(
+    renderWithRouter(
       <CharactersProvider>
         <p>children</p>
       </CharactersProvider>

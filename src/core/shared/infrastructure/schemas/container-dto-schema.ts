@@ -18,7 +18,7 @@ export const getContainerDtoSchema = <
   z.object({
     offset: z.number().finite().nonnegative(),
     limit: z.number().finite().positive(),
-    total: z.number().finite().positive(),
-    count: z.number().finite().positive(),
+    total: z.number().finite().nonnegative(),
+    count: z.number().finite().nonnegative(),
     results: z.array(schema),
   });

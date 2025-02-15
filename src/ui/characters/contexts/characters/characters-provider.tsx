@@ -1,48 +1,53 @@
 import { container } from '@config/container';
-import { ReactNode, useCallback, useMemo, useRef } from 'react';
+import { ReactNode } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { SEARCH_CHARACTERS_QUERY_KEY } from '@ui/characters/constants';
-import {
-  CharactersContext,
-  CharactersContextValue,
-} from '@ui/characters/contexts/characters/characters-context';
+import { CharactersContext } from '@ui/characters/contexts/characters/characters-context';
 import { CharactersProviderProps } from '@ui/characters/contexts/characters/characters-provider-props';
+import { useSearch } from '@tanstack/react-router';
+import { CharactersProviderRoot } from '@ui/characters/contexts/characters/characters-provider-root';
 
 export const CharactersProvider = ({
   children,
+  SearchBar = (): null => null,
+  Header = (): null => null,
 }: CharactersProviderProps): ReactNode => {
+  const { search } = useSearch({ strict: false });
   const controller = container.resolve('searchCharactersController');
-  const searchTerm = useRef('');
 
-  const setSearchTerm = useCallback(
-    (search: string) => (searchTerm.current = search),
-    []
-  );
-
-  const { data, error, isPending, isError } = useQuery({
-    queryKey: [SEARCH_CHARACTERS_QUERY_KEY, searchTerm.current],
-    queryFn: () => controller(searchTerm.current),
+  const { data, error, isPending, isError, isFetching } = useQuery({
+    queryKey: [SEARCH_CHARACTERS_QUERY_KEY, search],
+    queryFn: () => controller(search),
   });
 
-  const contextValue = useMemo<CharactersContextValue>(
-    () => ({
-      setSearchTerm,
-      characterList: data ?? { results: 0, characters: [] },
-    }),
-    [setSearchTerm, data]
-  );
-
   if (isPending) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header isLoading />
+        <CharactersProviderRoot>
+          <SearchBar />
+        </CharactersProviderRoot>
+      </>
+    );
   }
 
   if (isError) {
-    return <p>Error: {error?.message || 'Unknown error'}</p>;
+    return (
+      <CharactersProviderRoot>
+        <p>Error: {error?.message || 'Unknown error'}</p>;
+      </CharactersProviderRoot>
+    );
   }
 
   return (
-    <CharactersContext.Provider value={contextValue}>
-      {children}
-    </CharactersContext.Provider>
+    <>
+      <Header isLoading={isFetching} />
+      <CharactersProviderRoot>
+        <SearchBar />
+        <CharactersContext.Provider value={data}>
+          {children}
+        </CharactersContext.Provider>
+      </CharactersProviderRoot>
+    </>
   );
 };

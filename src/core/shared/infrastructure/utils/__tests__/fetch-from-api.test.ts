@@ -6,7 +6,7 @@ import { HttpError } from '@core/shared/infrastructure/exceptions';
 import { fetchFromApi } from '@core/shared/infrastructure/utils/fecth-from-api';
 import { http, HttpResponse } from 'msw';
 import { server } from '@__tests__/server';
-import { WrapperMother } from 'src/__mocks__/wrapper-mother';
+import { WrapperMother } from '@__mocks__/wrapper-mother';
 
 describe('fetchFromApi', () => {
   it('Should be a function', () => {

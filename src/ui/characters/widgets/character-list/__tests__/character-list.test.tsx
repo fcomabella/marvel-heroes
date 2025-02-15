@@ -1,9 +1,8 @@
-import { searchCharactersControllerMock } from 'src/__mocks__/container.mock';
-import { renderWithQueryProvider } from '@__tests__/render-with-query-provider';
+import { searchCharactersControllerMock } from '@__mocks__/container.mock';
 import { render, screen, waitFor } from '@testing-library/react';
-import { CharactersProvider } from '@ui/characters/contexts/characters';
 import { CharacterListMother } from '@ui/characters/models/__tests__/character-list-mother';
 import { CharacterList } from '@ui/characters/widgets/character-list/character-list';
+import { renderWithCharactersProvider } from '@__tests__/render-with-characters-provider';
 
 describe('CharacterListWidget', () => {
   it('Should be used inside a CharactersContextProvider', () => {
@@ -15,11 +14,7 @@ describe('CharacterListWidget', () => {
 
     searchCharactersControllerMock.mockResolvedValue(characterList);
 
-    renderWithQueryProvider(
-      <CharactersProvider>
-        <CharacterList />
-      </CharactersProvider>
-    );
+    renderWithCharactersProvider(<CharacterList />);
 
     await waitFor(() => {
       expect(screen.getByTestId('results-paragraph')).toHaveTextContent(

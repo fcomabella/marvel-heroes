@@ -8,20 +8,20 @@ export const CharacterCardRoot = styled('div')({
   gridTemplateColumns: '110px 56px',
   gap: '6px',
   background: `
-      linear-gradient(
-        135deg,
-        transparent 50%,
-      #ffffff 50%
-      ),
-      linear-gradient(
-      #000000 0%,
-      #000000 100%
-      ),
-      linear-gradient(
-      #ff0000 0%,
-      #ff0000 100%
-      )
-      `,
+    linear-gradient(
+      135deg,
+      transparent 50%,
+    #ffffff 50%
+    ),
+    linear-gradient(
+    #000000 0%,
+    #000000 100%
+    ),
+    linear-gradient(
+    #ff0000 0%,
+    #ff0000 100%
+    )
+  `,
   backgroundSize: '12px 12px, auto 56px, cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'bottom right',

@@ -28,6 +28,9 @@ export const SearchField = ({
         placeholder={label}
         value={value}
         onChange={onChange}
+        ref={(node) => {
+          node?.focus();
+        }}
       />
     </SearchFieldRoot>
   );

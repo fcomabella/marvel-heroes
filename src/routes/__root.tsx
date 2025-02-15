@@ -1,5 +1,4 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
-import { Header } from '@ui/components/header';
 import { lazy, ReactNode, Suspense } from 'react';
 
 const TanStackRouterDevtools =
@@ -14,7 +13,6 @@ const TanStackRouterDevtools =
 export const Route = createRootRoute({
   component: () => (
     <>
-      <Header totalFavorites={0} />
       <Outlet />
       <Suspense>
         <TanStackRouterDevtools />

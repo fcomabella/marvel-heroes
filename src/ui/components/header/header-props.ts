@@ -1,3 +1,3 @@
-export interface HeaderProps {
-  totalFavorites?: number;
-}
+import { HeaderRootProps } from '@ui/components/header/header-root-props';
+
+export type HeaderProps = HeaderRootProps;

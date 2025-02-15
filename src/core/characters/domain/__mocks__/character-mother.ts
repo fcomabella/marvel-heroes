@@ -1,8 +1,8 @@
 import { Character } from '@core/characters/domain/models';
 import { faker } from '@faker-js/faker';
-import { ResourceListMother } from 'src/__mocks__/resource-list-mother';
-import { ThumbnailMother } from 'src/__mocks__/thumbnail-mother';
-import { UrlMother } from 'src/__mocks__/url-mother';
+import { ResourceListMother } from '@__mocks__/resource-list-mother';
+import { ThumbnailMother } from '@__mocks__/thumbnail-mother';
+import { UrlMother } from '@__mocks__/url-mother';
 
 export const CharacterMother = (): Character => ({
   comics: ResourceListMother(),
