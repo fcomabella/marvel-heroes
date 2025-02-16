@@ -25,7 +25,7 @@ describe('Character widget', () => {
     renderWithCharacterProvider(<Character />);
 
     await waitFor(() => {
-      const image = screen.getByRole('img');
+      const image = screen.getByRole('img', { name: character.name });
       const name = screen.getByText(character.name);
       const description = screen.getByText(character.description);
       expect(image).toHaveAttribute('src', character.thumbnail);

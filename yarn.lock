@@ -2364,6 +2364,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/luxon@npm:3.4.2":
+  version: 3.4.2
+  resolution: "@types/luxon@npm:3.4.2"
+  checksum: 10c0/d835467de3daf7e17ba78b50bb5a14efd94272439ca067990d71332a54b311544459c69623eddd243b511b28d70194c9591a9ee8cf9c038962c965f991affd7e
+  languageName: node
+  linkType: hard
+
 "@types/mdx@npm:^2.0.0":
   version: 2.0.13
   resolution: "@types/mdx@npm:2.0.13"
@@ -5086,6 +5093,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"luxon@npm:3.5.0":
+  version: 3.5.0
+  resolution: "luxon@npm:3.5.0"
+  checksum: 10c0/335789bba95077db831ef99894edadeb23023b3eb2137a1b56acd0d290082b691cf793143d69e30bc069ec95f0b49f36419f48e951c68014f19ffe12045e3494
+  languageName: node
+  linkType: hard
+
 "lz-string@npm:^1.5.0":
   version: 1.5.0
   resolution: "lz-string@npm:1.5.0"
@@ -5192,6 +5206,7 @@ __metadata:
     "@testing-library/react": "npm:16.2.0"
     "@testing-library/user-event": "npm:14.6.1"
     "@types/crypto-js": "npm:4.2.2"
+    "@types/luxon": "npm:3.4.2"
     "@types/react": "npm:19.0.8"
     "@types/react-dom": "npm:19.0.3"
     "@typescript-eslint/utils": "npm:8.24.0"
@@ -5208,6 +5223,7 @@ __metadata:
     globals: "npm:15.14.0"
     husky: "npm:9.1.7"
     jsdom: "npm:26.0.0"
+    luxon: "npm:3.5.0"
     msw: "npm:2.7.0"
     pinst: "npm:3.0.0"
     prettier: "npm:3.5.0"

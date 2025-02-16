@@ -9,9 +9,7 @@ export const isWrapper = <
   dto: unknown,
   schema: Schema
 ): dto is Wrapper<T> => {
-  const { success, error } = getWrapperDtoSchema(schema).safeParse(dto);
-
-  console.log({ error });
+  const { success } = getWrapperDtoSchema(schema).safeParse(dto);
 
   return success;
 };

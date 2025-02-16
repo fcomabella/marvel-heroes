@@ -15,7 +15,7 @@ export const comicDtoSchema = z.object({
   title: z.string(),
   issueNumber: z.number().nonnegative(),
   variantDescription: z.string(),
-  description: z.string(),
+  description: z.string().nullable(),
   modified: z.string(),
   isbn: z.string(),
   upc: z.string(),

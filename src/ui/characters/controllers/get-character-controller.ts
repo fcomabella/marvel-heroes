@@ -8,18 +8,25 @@ import {
 import { CharacterDetails } from '@ui/characters/models/character-details';
 import { GetCharacterControllerResponse } from '@ui/characters/models/get-character-controller-response';
 import { getImageUrl } from '@ui/shared/utils';
+import { DateTime } from 'luxon';
 
 const mapComic = ({ id, title, thumbnail, dates }: Comic): ComicDetails => {
   const onSale = dates.find((date) => date.type === 'onsaleDate');
 
-  const year = !onSale?.date
-    ? 'Unknown'
-    : new Date(onSale.date).getFullYear().toString();
+  let year = 'Unknown';
+
+  if (onSale?.date) {
+    const date = DateTime.fromISO(onSale.date);
+
+    if (date.isValid) {
+      year = date.year.toString();
+    }
+  }
 
   return {
     id,
     title,
-    thumbnail: getImageUrl(thumbnail, 'portrait_medium'),
+    thumbnail: getImageUrl(thumbnail, 'portrait_xlarge'),
     year,
   };
 };

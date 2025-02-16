@@ -48,7 +48,7 @@ describe('GetCharacterController', () => {
         return {
           id,
           title,
-          thumbnail: getImageUrl(thumbnail, 'portrait_medium'),
+          thumbnail: getImageUrl(thumbnail, 'portrait_xlarge'),
           year,
         };
       }),

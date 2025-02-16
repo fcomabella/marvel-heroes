@@ -4,12 +4,18 @@ import { ReactNode } from 'react';
 
 export const CharacterDetailsImage = (): ReactNode => {
   const {
-    character: { thumbnail },
+    character: { thumbnail, name },
   } = useCharacterContext();
 
   return (
     <CharacterDetailsImageContainer>
-      <img src={thumbnail} loading="lazy" decoding="async" />
+      <img
+        src={thumbnail}
+        loading="lazy"
+        decoding="async"
+        alt={name}
+        aria-label={name}
+      />
     </CharacterDetailsImageContainer>
   );
 };
