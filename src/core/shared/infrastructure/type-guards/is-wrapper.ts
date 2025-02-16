@@ -1,4 +1,4 @@
-import { Wrapper } from '@core/shared/infrastructure/models';
+import { Wrapper } from '@core/shared/domain/models';
 import { getWrapperDtoSchema } from '@core/shared/infrastructure/schemas';
 import { z } from 'zod';
 

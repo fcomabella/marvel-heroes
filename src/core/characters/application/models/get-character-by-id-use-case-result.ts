@@ -1,4 +1,4 @@
-import { GetCharacterResult } from '@core/characters/domain/models/get-character-result';
+import { GetCharacterResult } from '@core/characters/domain/ports/get-character-result';
 
 export type GetCharacterByIdUseCaseResult = (
   id: string

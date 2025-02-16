@@ -1,6 +1,6 @@
 import { GetCharacterByIdUseCaseResult } from '@core/characters/application/models';
 import { Character, Comic } from '@core/characters/domain/models';
-import { GetCharacterResult } from '@core/characters/domain/models/get-character-result';
+import { GetCharacterResult } from '@core/characters/domain/ports/get-character-result';
 import {
   ComicDetails,
   GetCharacterControllerResult,
