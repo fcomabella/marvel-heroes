@@ -5,7 +5,9 @@ import { CharacterDetailsDescription } from './character-details-description';
 import { ReactNode } from 'react';
 
 export const CharacterDetailsInfo = (): ReactNode => {
-  const { name, description } = useCharacterContext();
+  const {
+    character: { name, description },
+  } = useCharacterContext();
 
   return (
     <CharacterDetailsInfoRoot>

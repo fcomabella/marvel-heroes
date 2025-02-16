@@ -4,12 +4,14 @@ import { z } from 'zod';
 
 export const isWrapper = <
   T extends object,
-  Schema extends z.ZodObject<z.ZodRawShape>,
+  Schema extends z.ZodObject<z.ZodRawShape> = z.ZodObject<z.ZodRawShape>,
 >(
   dto: unknown,
   schema: Schema
 ): dto is Wrapper<T> => {
-  const { success } = getWrapperDtoSchema(schema).safeParse(dto);
+  const { success, error } = getWrapperDtoSchema(schema).safeParse(dto);
+
+  console.log({ error });
 
   return success;
 };

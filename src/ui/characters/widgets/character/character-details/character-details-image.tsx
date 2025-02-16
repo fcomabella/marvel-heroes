@@ -3,7 +3,9 @@ import { CharacterDetailsImageContainer } from '@ui/characters/widgets/character
 import { ReactNode } from 'react';
 
 export const CharacterDetailsImage = (): ReactNode => {
-  const { thumbnail } = useCharacterContext();
+  const {
+    character: { thumbnail },
+  } = useCharacterContext();
 
   return (
     <CharacterDetailsImageContainer>

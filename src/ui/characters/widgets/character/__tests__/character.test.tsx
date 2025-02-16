@@ -3,6 +3,7 @@ import { useParamsMock } from '@__mocks__/react-router.mock';
 import { renderWithCharacterProvider } from '@__tests__/render-with-character-provider';
 import { render, screen, waitFor } from '@testing-library/react';
 import { CharacterDetailsMother } from '@ui/characters/models/__tests__/character-details-mother';
+import { ComicDetailsMother } from '@ui/characters/models/__tests__/comic-details-mother';
 import { Character } from '@ui/characters/widgets/character/character';
 
 describe('Character widget', () => {
@@ -17,8 +18,9 @@ describe('Character widget', () => {
 
   it('Should render the character', async () => {
     const character = CharacterDetailsMother();
+    const comics = [ComicDetailsMother()];
 
-    getCharacterControllerMock.mockResolvedValueOnce(character);
+    getCharacterControllerMock.mockResolvedValueOnce({ character, comics });
 
     renderWithCharacterProvider(<Character />);
 

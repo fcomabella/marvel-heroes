@@ -17,6 +17,10 @@ export const CssReset = (): ReactNode => (
       :root {
         font-family: 'Roboto Condensed', sans-serif;
       }
+
+      pre {
+        font-family: monospace;
+      }
     `}
   />
 );

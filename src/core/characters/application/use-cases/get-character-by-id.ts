@@ -6,7 +6,11 @@ export const GetCharacterById = ({
 }: {
   charactersRepository: CharactersRepositoryResult;
 }): GetCharacterByIdUseCaseResult => {
-  return (id: string) => {
-    return charactersRepository.getCharacterById(id);
+  return async (id: string) => {
+    const [character, comics] = await Promise.all([
+      charactersRepository.getCharacterById(id),
+      charactersRepository.getCharacterComics(id),
+    ]);
+    return { character, comics };
   };
 };
