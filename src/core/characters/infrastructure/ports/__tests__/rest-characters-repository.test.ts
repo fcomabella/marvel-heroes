@@ -85,7 +85,9 @@ describe('RestCharactersRepository', () => {
 
       fetchFnMock.mockResolvedValueOnce('non compliant');
 
-      expect(() => repository.searchCharacters('spiderman')).rejects.toThrow();
+      await expect(() =>
+        repository.searchCharacters('spiderman')
+      ).rejects.toThrow();
     });
   });
 
@@ -112,7 +114,9 @@ describe('RestCharactersRepository', () => {
 
       fetchFnMock.mockResolvedValueOnce('non compliant');
 
-      expect(() => repository.getCharacterById('spiderman')).rejects.toThrow();
+      await expect(() =>
+        repository.getCharacterById('spiderman')
+      ).rejects.toThrow();
     });
   });
 
@@ -144,7 +148,7 @@ describe('RestCharactersRepository', () => {
 
       fetchFnMock.mockResolvedValueOnce('non compliant');
 
-      expect(() =>
+      await expect(() =>
         repository.getCharacterComics('spiderman')
       ).rejects.toThrow();
     });
