@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import { FavoritesProps } from './favorites-props';
 import { FavoritesRoot } from './favorites-root';
-import { HeartIcon } from '../heart-icon';
 import { FavoritesCount } from '@ui/components/favorites/favorites-count';
+import { HeartIcon } from '@ui/components/heart-icon';
 
 export const Favorites = ({
   totalFavorites = 0,

@@ -1,4 +1,7 @@
-import { SearchCharactersUseCaseResult } from '@core/characters/application/models';
+import {
+  GetFavoritesUseCaseResult,
+  SearchCharactersUseCaseResult,
+} from '@core/characters/application/models';
 import { CharacterMother } from '@core/characters/domain/models/__mocks__/character-mother';
 import { SearchCharactersController } from '@ui/characters/controllers/search-characters-controller';
 import { CharacterList, CharacterSummary } from '@ui/characters/models';
@@ -6,13 +9,14 @@ import { getImageUrl } from '@ui/shared/utils';
 import { ContainerMother } from '@__mocks__/container-mother';
 
 const searchCharactersUseCaseMock = vi.fn<SearchCharactersUseCaseResult>();
-
+const getFavoritesUseCaseMock = vi.fn<GetFavoritesUseCaseResult>();
 describe('SearchCharactersController', () => {
   it('Should return the character list', async () => {
     const characterList = ContainerMother(CharacterMother);
 
     const searchCharactersController = SearchCharactersController({
       searchCharactersUseCase: searchCharactersUseCaseMock,
+      getFavoritesUseCase: getFavoritesUseCaseMock,
     });
 
     searchCharactersUseCaseMock.mockResolvedValueOnce(characterList);

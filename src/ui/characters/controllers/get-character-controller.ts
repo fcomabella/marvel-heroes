@@ -1,4 +1,7 @@
-import { GetCharacterByIdUseCaseResult } from '@core/characters/application/models';
+import {
+  GetCharacterByIdUseCaseResult,
+  GetFavoritesUseCaseResult,
+} from '@core/characters/application/models';
 import { Character, Comic } from '@core/characters/domain/models';
 import { GetCharacterResult } from '@core/characters/domain/ports/get-character-result';
 import {
@@ -31,40 +34,49 @@ const mapComic = ({ id, title, thumbnail, dates }: Comic): ComicDetails => {
   };
 };
 
-const mapCharacter = ({
-  id,
-  description,
-  name,
-  thumbnail,
-}: Character): CharacterDetails => {
+const mapCharacter = (
+  character: Character,
+  favorites: Array<number>
+): CharacterDetails => {
+  const { id, description, name, thumbnail } = character;
+  const favoritesSet = new Set(favorites);
+
   return {
     id,
     description,
     name,
     thumbnail: getImageUrl(thumbnail, 'portrait_uncanny'),
+    isFavorite: favoritesSet.has(id),
   };
 };
 
-const mapper = (dto: GetCharacterResult): GetCharacterControllerResponse => {
+const mapper = (
+  getCharacterDto: GetCharacterResult,
+  favoritesDto: Array<number>
+): GetCharacterControllerResponse => {
   const {
     character: { results: characters },
     comics: { results: comics },
-  } = dto;
+  } = getCharacterDto;
 
   const [character] = characters;
 
   return {
-    character: mapCharacter(character),
+    character: mapCharacter(character, favoritesDto),
     comics: comics.map<ComicDetails>(mapComic),
   };
 };
 
 export const GetCharacterController = ({
   getCharacterByIdUseCase,
+  getFavoritesUseCase,
 }: {
   getCharacterByIdUseCase: GetCharacterByIdUseCaseResult;
+  getFavoritesUseCase: GetFavoritesUseCaseResult;
 }): GetCharacterControllerResult => {
   return async (id: string) => {
-    return mapper(await getCharacterByIdUseCase(id));
+    const character = await getCharacterByIdUseCase(id);
+    const favorites = await getFavoritesUseCase();
+    return mapper(character, favorites);
   };
 };

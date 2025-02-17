@@ -1,4 +1,7 @@
-import { SearchCharactersUseCaseResult } from '@core/characters/application/models';
+import {
+  GetFavoritesUseCaseResult,
+  SearchCharactersUseCaseResult,
+} from '@core/characters/application/models';
 import { Character } from '@core/characters/domain/models/character';
 import { Container } from '@core/shared/domain/models';
 import {
@@ -8,8 +11,12 @@ import {
 } from '@ui/characters/models';
 import { getImageUrl } from '@ui/shared/utils';
 
-const mapper = (dto: Container<Character>): CharacterList => {
-  const { count, results } = dto;
+const mapper = (
+  charactersDto: Container<Character>,
+  favoritesDto: Array<number>
+): CharacterList => {
+  const { count, results } = charactersDto;
+  const favoritesSet = new Set(favoritesDto);
 
   return {
     results: count,
@@ -17,7 +24,7 @@ const mapper = (dto: Container<Character>): CharacterList => {
       return {
         id,
         name,
-        isFavorite: false,
+        isFavorite: favoritesSet.has(id),
         thumbnail: getImageUrl(thumbnail, 'portrait_fantastic'),
       };
     }),
@@ -26,11 +33,14 @@ const mapper = (dto: Container<Character>): CharacterList => {
 
 export const SearchCharactersController = ({
   searchCharactersUseCase,
+  getFavoritesUseCase,
 }: {
   searchCharactersUseCase: SearchCharactersUseCaseResult;
+  getFavoritesUseCase: GetFavoritesUseCaseResult;
 }): SearchCharactersControllerResult => {
   return async (search?: string, limit?: number) => {
     const searchResult = await searchCharactersUseCase(search, limit);
-    return mapper(searchResult);
+    const favorites = await getFavoritesUseCase();
+    return mapper(searchResult, favorites);
   };
 };

@@ -5,7 +5,7 @@ import {
   RouterProvider,
   createRouter,
 } from '@tanstack/react-router';
-import { Header as HeaderComponent } from '@ui/components/header/header';
+import { Header as HeaderComponent } from '@ui/characters/widgets/header/header';
 import { ReactNode } from 'react';
 
 const meta: Meta<typeof HeaderComponent> = {

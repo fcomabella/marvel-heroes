@@ -1,9 +1,10 @@
 import {
+  CharactersRepository,
   GetCharacterByIdFn,
   GetCharacterComicsFn,
+  GetFavoritesFn,
   SearchCharactersFn,
-} from '@core/characters/domain/models';
-import { CharactersRepository } from '@core/characters/domain/ports';
+} from '@core/characters/domain/ports';
 import { SearchCharactersControllerResult } from '@ui/characters/models';
 import { GetCharacterControllerResult } from '@ui/characters/models/get-character-controller-result';
 
@@ -11,6 +12,7 @@ export const charactersRepositoryMock = vi.fn<CharactersRepository>(() => ({
   searchCharacters: vi.fn<SearchCharactersFn>(),
   getCharacterById: vi.fn<GetCharacterByIdFn>(),
   getCharacterComics: vi.fn<GetCharacterComicsFn>(),
+  getFavorites: vi.fn<GetFavoritesFn>(),
 }));
 
 export const searchCharactersControllerMock =

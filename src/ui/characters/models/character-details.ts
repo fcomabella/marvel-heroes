@@ -3,4 +3,5 @@ export interface CharacterDetails {
   name: string;
   description: string;
   thumbnail: string;
+  isFavorite: boolean;
 }

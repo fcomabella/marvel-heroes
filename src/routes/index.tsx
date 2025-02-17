@@ -5,7 +5,7 @@ import { CharacterSearch } from '@ui/characters/widgets/character-search';
 import { ReactNode } from 'react';
 import { zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
-import { Header } from '@ui/components/header';
+import { Header } from '@ui/characters/widgets/header';
 
 const characterSearchSchema = z.object({
   search: z.string().optional(),

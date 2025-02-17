@@ -1,5 +1,8 @@
 import { ContainerMother } from '@__mocks__/container-mother';
-import { GetCharacterByIdUseCaseResult } from '@core/characters/application/models';
+import {
+  GetCharacterByIdUseCaseResult,
+  GetFavoritesUseCaseResult,
+} from '@core/characters/application/models';
 import { Comic } from '@core/characters/domain/models';
 import { CharacterMother } from '@core/characters/domain/models/__mocks__/character-mother';
 import { ComicMother } from '@core/characters/domain/models/__mocks__/comic-mother';
@@ -10,6 +13,7 @@ import { GetCharacterControllerResponse } from '@ui/characters/models/get-charac
 import { getImageUrl } from '@ui/shared/utils';
 
 const getCharacterByIdUseCaseMock = vi.fn<GetCharacterByIdUseCaseResult>();
+const getFavoritesUseCaseMock = vi.fn<GetFavoritesUseCaseResult>();
 
 describe('GetCharacterController', () => {
   it('Should return the character details', async () => {
@@ -18,6 +22,7 @@ describe('GetCharacterController', () => {
 
     const getCharacterController = GetCharacterController({
       getCharacterByIdUseCase: getCharacterByIdUseCaseMock,
+      getFavoritesUseCase: getFavoritesUseCaseMock,
     });
 
     getCharacterByIdUseCaseMock.mockResolvedValueOnce({
@@ -37,6 +42,7 @@ describe('GetCharacterController', () => {
         id,
         name,
         thumbnail: getImageUrl(thumbnail, 'portrait_uncanny'),
+        isFavorite: false,
       },
       comics: comics.map<ComicDetails>(({ id, title, thumbnail, dates }) => {
         const onSale = dates.find((date) => date.type === 'onsaleDate');
@@ -78,6 +84,7 @@ describe('GetCharacterController', () => {
 
     const getCharacterController = GetCharacterController({
       getCharacterByIdUseCase: getCharacterByIdUseCaseMock,
+      getFavoritesUseCase: getFavoritesUseCaseMock,
     });
 
     getCharacterByIdUseCaseMock.mockResolvedValueOnce({

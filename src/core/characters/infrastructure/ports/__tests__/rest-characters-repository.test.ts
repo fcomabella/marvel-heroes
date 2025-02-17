@@ -4,6 +4,7 @@ import { DEFAULT_RETURN_LIMIT } from '@core/shared/infrastructure/constants';
 import { WrapperMother } from '@__mocks__/wrapper-mother';
 import { CHARACTERS_BASE_URL } from '@core/characters/infrastructure/constants';
 import { ComicMother } from '@core/characters/domain/models/__mocks__/comic-mother';
+import { faker } from '@faker-js/faker';
 
 const fetchFnMock = vi.fn<(url: URL) => Promise<unknown>>(async () =>
   WrapperMother(CharacterMother)
@@ -17,8 +18,10 @@ describe('RestCharactersRepository', () => {
   it('Should return a characters repository', () => {
     const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
 
-    expect(repository).toHaveProperty('searchCharacters');
     expect(repository.searchCharacters).toBeInstanceOf(Function);
+    expect(repository.getCharacterComics).toBeInstanceOf(Function);
+    expect(repository.getFavorites).toBeInstanceOf(Function);
+    expect(repository.getCharacterById).toBeInstanceOf(Function);
   });
 
   describe('searchCharacters method', () => {
@@ -151,6 +154,41 @@ describe('RestCharactersRepository', () => {
       await expect(() =>
         repository.getCharacterComics('spiderman')
       ).rejects.toThrow();
+    });
+  });
+
+  describe('getFavorites method', () => {
+    it('Should return an empty array', async () => {
+      const spy = vi.spyOn(Storage.prototype, 'getItem');
+      spy.mockReturnValueOnce(null);
+
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      const favorites = await repository.getFavorites();
+
+      expect(favorites).toStrictEqual([]);
+    });
+
+    it('Should return the favorites as an array', async () => {
+      const value: Array<number> = [faker.number.int()];
+
+      const spy = vi.spyOn(Storage.prototype, 'getItem');
+      spy.mockReturnValueOnce(JSON.stringify(value));
+
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      const favorites = await repository.getFavorites();
+
+      expect(favorites).toStrictEqual(value);
+    });
+
+    it('Should throw', async () => {
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      const spy = vi.spyOn(Storage.prototype, 'getItem');
+      spy.mockReturnValueOnce('"not an array"');
+
+      await expect(() => repository.getFavorites()).rejects.toThrow();
     });
   });
 });

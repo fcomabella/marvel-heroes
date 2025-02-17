@@ -1,6 +1,6 @@
 import { renderWithRouter } from '@__tests__/render-with-router';
 import { screen, waitFor } from '@testing-library/dom';
-import { Header } from '@ui/components/header/header';
+import { Header } from '@ui/characters/widgets/header/header';
 
 describe('Header component', () => {
   it('Should render', async () => {

@@ -6,4 +6,5 @@ export const CharacterDetailsMother = (): CharacterDetails => ({
   id: faker.number.int(),
   name: faker.person.fullName(),
   thumbnail: faker.internet.url(),
+  isFavorite: faker.datatype.boolean(),
 });

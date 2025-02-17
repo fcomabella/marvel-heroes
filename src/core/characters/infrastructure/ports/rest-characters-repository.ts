@@ -1,13 +1,14 @@
+import { Comic } from '@core/characters/domain/models';
+import { Character } from '@core/characters/domain/models/character';
 import {
-  Comic,
   GetCharacterComicsResult,
   SearchCharactersResult,
-} from '@core/characters/domain/models';
-import { Character } from '@core/characters/domain/models/character';
+} from '@core/characters/domain/ports';
 import { CharactersRepository } from '@core/characters/domain/ports/characters-repository';
 import { CHARACTERS_BASE_URL } from '@core/characters/infrastructure/constants';
 import { characterDtoSchema } from '@core/characters/infrastructure/schemas';
 import { comicDtoSchema } from '@core/characters/infrastructure/schemas/comic-dto-schema';
+import { isFavorites } from '@core/characters/infrastructure/type-guards/is-favorites';
 import { DEFAULT_RETURN_LIMIT } from '@core/shared/infrastructure/constants';
 import { unWrap } from '@core/shared/infrastructure/utils';
 
@@ -27,6 +28,7 @@ export const RestCharactersRepository: CharactersRepository = ({ fetchFn }) => {
 
       return unWrap<Character>(await fetchFn(url), characterDtoSchema);
     },
+
     getCharacterById: async (id): SearchCharactersResult => {
       const url = new URL(`${CHARACTERS_BASE_URL}/${id}`);
       return unWrap<Character>(await fetchFn(url), characterDtoSchema);
@@ -39,6 +41,24 @@ export const RestCharactersRepository: CharactersRepository = ({ fetchFn }) => {
       url.searchParams.append('limit', '20');
 
       return unWrap<Comic>(await fetchFn(url), comicDtoSchema);
+    },
+
+    getFavorites: async (): Promise<Array<number>> => {
+      const favoritesString = localStorage.getItem('favorite-characters');
+
+      try {
+        const favorites = JSON.parse(favoritesString ?? '[]');
+        console.log(favorites);
+
+        if (!isFavorites(favorites)) {
+          throw new Error('Server has sent invalid data');
+        }
+
+        return favorites;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (_error) {
+        throw new Error('Server has sent invalid data');
+      }
     },
   };
 };
