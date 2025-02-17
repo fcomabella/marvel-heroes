@@ -11,7 +11,7 @@ import {
 } from '@core/characters/infrastructure/constants';
 import { characterDtoSchema } from '@core/characters/infrastructure/schemas';
 import { comicDtoSchema } from '@core/characters/infrastructure/schemas/comic-dto-schema';
-import { isFavorites } from '@core/characters/infrastructure/type-guards/is-favorites';
+import { parseFavorites } from '@core/characters/infrastructure/utils/parse-favorites';
 import { DEFAULT_RETURN_LIMIT } from '@core/shared/infrastructure/constants';
 import { unWrap } from '@core/shared/infrastructure/utils';
 
@@ -47,68 +47,35 @@ export const RestCharactersRepository: CharactersRepository = ({ fetchFn }) => {
     },
 
     getFavorites: async (): Promise<Array<number>> => {
-      const favoritesString = localStorage.getItem(FAVORITE_CHARACTERS_KEY);
-
-      try {
-        const favorites = JSON.parse(favoritesString ?? '[]');
-
-        if (!isFavorites(favorites)) {
-          throw new Error('Server has sent invalid data');
-        }
-
-        return favorites;
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (_error) {
-        throw new Error('Server has sent invalid data');
-      }
+      return parseFavorites(localStorage.getItem(FAVORITE_CHARACTERS_KEY));
     },
 
     setIsFavorite: async (id: number): Promise<void> => {
-      const favoritesString = localStorage.getItem(FAVORITE_CHARACTERS_KEY);
+      const favorites = parseFavorites(
+        localStorage.getItem(FAVORITE_CHARACTERS_KEY)
+      );
+      const favoritesSet = new Set(favorites);
 
-      try {
-        const favorites = JSON.parse(favoritesString ?? '[]');
+      favoritesSet.add(id);
 
-        if (!isFavorites(favorites)) {
-          throw new Error('Server has sent invalid data');
-        }
-
-        const favoritesSet = new Set(favorites);
-
-        favoritesSet.add(id);
-
-        localStorage.setItem(
-          FAVORITE_CHARACTERS_KEY,
-          JSON.stringify(Array.from(favoritesSet))
-        );
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (_error) {
-        throw new Error('Server has sent invalid data');
-      }
+      localStorage.setItem(
+        FAVORITE_CHARACTERS_KEY,
+        JSON.stringify(Array.from(favoritesSet))
+      );
     },
 
     unsetIsFavorite: async (id: number): Promise<void> => {
-      const favoritesString = localStorage.getItem(FAVORITE_CHARACTERS_KEY);
+      const favorites = parseFavorites(
+        localStorage.getItem(FAVORITE_CHARACTERS_KEY)
+      );
+      const favoritesSet = new Set(favorites);
 
-      try {
-        const favorites = JSON.parse(favoritesString ?? '[]');
+      favoritesSet.delete(id);
 
-        if (!isFavorites(favorites)) {
-          throw new Error('Server has sent invalid data');
-        }
-
-        const favoritesSet = new Set(favorites);
-
-        favoritesSet.delete(id);
-
-        localStorage.setItem(
-          FAVORITE_CHARACTERS_KEY,
-          JSON.stringify(Array.from(favoritesSet))
-        );
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (_error) {
-        throw new Error('Server has sent invalid data');
-      }
+      localStorage.setItem(
+        FAVORITE_CHARACTERS_KEY,
+        JSON.stringify(Array.from(favoritesSet))
+      );
     },
   };
 };

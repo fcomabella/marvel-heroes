@@ -2,9 +2,13 @@ import { CharacterMother } from '@core/characters/domain/models/__mocks__/charac
 import { RestCharactersRepository } from '@core/characters/infrastructure/ports/rest-characters-repository';
 import { DEFAULT_RETURN_LIMIT } from '@core/shared/infrastructure/constants';
 import { WrapperMother } from '@__mocks__/wrapper-mother';
-import { CHARACTERS_BASE_URL } from '@core/characters/infrastructure/constants';
+import {
+  CHARACTERS_BASE_URL,
+  FAVORITE_CHARACTERS_KEY,
+} from '@core/characters/infrastructure/constants';
 import { ComicMother } from '@core/characters/domain/models/__mocks__/comic-mother';
 import { faker } from '@faker-js/faker';
+import { CharacterSummaryMother } from '@ui/characters/models/__tests__/character-summary-mother';
 
 const fetchFnMock = vi.fn<(url: URL) => Promise<unknown>>(async () =>
   WrapperMother(CharacterMother)
@@ -22,6 +26,8 @@ describe('RestCharactersRepository', () => {
     expect(repository.getCharacterComics).toBeInstanceOf(Function);
     expect(repository.getFavorites).toBeInstanceOf(Function);
     expect(repository.getCharacterById).toBeInstanceOf(Function);
+    expect(repository.setIsFavorite).toBeInstanceOf(Function);
+    expect(repository.unsetIsFavorite).toBeInstanceOf(Function);
   });
 
   describe('searchCharacters method', () => {
@@ -180,6 +186,60 @@ describe('RestCharactersRepository', () => {
       const favorites = await repository.getFavorites();
 
       expect(favorites).toStrictEqual(value);
+    });
+
+    it('Should throw', async () => {
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      const spy = vi.spyOn(Storage.prototype, 'getItem');
+      spy.mockReturnValueOnce('"not an array"');
+
+      await expect(() => repository.getFavorites()).rejects.toThrow();
+    });
+  });
+
+  describe('setIsFavorite method', () => {
+    it('Should add the character', async () => {
+      const character = CharacterSummaryMother();
+
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      const spy = vi.spyOn(Storage.prototype, 'setItem');
+      await repository.setIsFavorite(character.id);
+
+      expect(spy).toHaveBeenCalledWith(
+        FAVORITE_CHARACTERS_KEY,
+        JSON.stringify([character.id])
+      );
+    });
+
+    it('Should throw', async () => {
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      const spy = vi.spyOn(Storage.prototype, 'getItem');
+      spy.mockReturnValueOnce('"not an array"');
+
+      await expect(() => repository.getFavorites()).rejects.toThrow();
+    });
+  });
+
+  describe('unsetIsFavorite method', () => {
+    it('Should remove the character', async () => {
+      const character = CharacterSummaryMother();
+      const character2 = CharacterSummaryMother();
+
+      const getSpy = vi.spyOn(Storage.prototype, 'getItem');
+      getSpy.mockReturnValueOnce(JSON.stringify([character.id, character2.id]));
+
+      const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
+
+      const setSpy = vi.spyOn(Storage.prototype, 'setItem');
+      await repository.unsetIsFavorite(character.id);
+
+      expect(setSpy).toHaveBeenCalledWith(
+        FAVORITE_CHARACTERS_KEY,
+        JSON.stringify([character2.id])
+      );
     });
 
     it('Should throw', async () => {

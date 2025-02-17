@@ -1,4 +1,4 @@
-import { useToggleIsFavorite } from '@ui/characters/hooks/use-toggle-is-favorite';
+import { useToggleIsFavorite } from '@ui/characters/hooks';
 import { CharacterSummary } from '@ui/characters/models';
 import { CharacterIsFavoriteRoot } from '@ui/characters/widgets/character-is-favorite/character-is-favorite-root';
 import { HeartIcon } from '@ui/components/heart-icon';
@@ -18,7 +18,12 @@ export const CharacterIsFavorite = ({
 
   return (
     <CharacterIsFavoriteRoot>
-      <IconButton onClick={favoriteButtonOnClick}>
+      <IconButton
+        onClick={favoriteButtonOnClick}
+        aria-label={
+          character.isFavorite ? 'Remove from favorites' : 'Add to favorites'
+        }
+      >
         <HeartIcon unselected={!character.isFavorite} />
       </IconButton>
     </CharacterIsFavoriteRoot>

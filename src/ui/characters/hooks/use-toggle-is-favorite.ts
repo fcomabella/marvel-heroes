@@ -10,7 +10,7 @@ import { CharacterDetails, CharacterSummary } from '@ui/characters/models';
 import { useCallback } from 'react';
 
 export const useToggleIsFavorite = (): ((
-  character: CharacterSummary | CharacterDetails
+  character: CharacterSummary
 ) => void) => {
   const setIsFavoriteController = container.resolve('setIsFavoriteController');
   const unsetIsFavoriteController = container.resolve(
