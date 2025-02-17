@@ -1,4 +1,4 @@
-import { ReactNode } from '@tanstack/react-router';
+import { ReactNode } from 'react';
 import { HTMLAttributes } from 'react';
 
 export const MarvelLogo = (props: HTMLAttributes<SVGElement>): ReactNode => (

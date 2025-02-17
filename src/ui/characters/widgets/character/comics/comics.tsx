@@ -1,4 +1,4 @@
-import { ReactNode } from '@tanstack/react-router';
+import { ReactNode } from 'react';
 import { useCharacterContext } from '@ui/characters/contexts/character';
 import { ComicsList } from '@ui/characters/widgets/character/comics/comics-list';
 import { ComicsRoot } from '@ui/characters/widgets/character/comics/comics-root';

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SearchField as SearchFieldComponent } from './search-field';
 import { ChangeEventHandler } from 'react';
 import { useArgs } from '@storybook/preview-api';
-import { ReactNode } from '@tanstack/react-router';
+import { ReactNode } from 'react';
 import { fn } from '@storybook/test';
 
 const meta: Meta<typeof SearchFieldComponent> = {

@@ -1,4 +1,4 @@
-import { ReactNode } from '@tanstack/react-router';
+import { ReactNode } from 'react';
 import { HTMLAttributes } from 'react';
 
 export const SearchIcon = (props: HTMLAttributes<SVGElement>): ReactNode => (
