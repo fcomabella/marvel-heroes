@@ -14,7 +14,7 @@ const characterSearchSchema = z.object({
 type CharacterSearch = z.infer<typeof characterSearchSchema>;
 
 const Index = (): ReactNode => (
-  <CharactersProvider SearchBar={CharacterSearch} Header={Header}>
+  <CharactersProvider Header={Header} SearchBar={<CharacterSearch />}>
     <CharacterList />
   </CharactersProvider>
 );

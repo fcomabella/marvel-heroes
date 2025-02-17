@@ -9,7 +9,7 @@ import { CharactersProviderRoot } from '@ui/characters/contexts/characters/chara
 
 export const CharactersProvider = ({
   children,
-  SearchBar = (): null => null,
+  SearchBar,
   Header = (): null => null,
 }: CharactersProviderProps): ReactNode => {
   const { search } = useSearch({ strict: false });
@@ -24,9 +24,7 @@ export const CharactersProvider = ({
     return (
       <>
         <Header isLoading />
-        <CharactersProviderRoot>
-          <SearchBar />
-        </CharactersProviderRoot>
+        <CharactersProviderRoot>{SearchBar}</CharactersProviderRoot>
       </>
     );
   }
@@ -43,7 +41,7 @@ export const CharactersProvider = ({
     <>
       <Header isLoading={isFetching} />
       <CharactersProviderRoot>
-        <SearchBar />
+        {SearchBar}
         <CharactersContext.Provider value={data}>
           {children}
         </CharactersContext.Provider>

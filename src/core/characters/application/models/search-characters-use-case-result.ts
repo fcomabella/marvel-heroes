@@ -1,4 +1,4 @@
-import { SearchCharactersResult } from '@core/characters/domain/models';
+import { SearchCharactersResult } from '@core/characters/domain/ports';
 
 export type SearchCharactersUseCaseResult = (
   search?: string,

@@ -48,7 +48,6 @@ export const RestCharactersRepository: CharactersRepository = ({ fetchFn }) => {
 
       try {
         const favorites = JSON.parse(favoritesString ?? '[]');
-        console.log(favorites);
 
         if (!isFavorites(favorites)) {
           throw new Error('Server has sent invalid data');

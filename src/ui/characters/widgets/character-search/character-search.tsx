@@ -7,8 +7,12 @@ import { DEFAULT_DEBOUNCE_TIME } from '@ui/shared/constants';
 export const CharacterSearch = ({ to = '/' }: { to?: string }): ReactNode => {
   const navigate = useNavigate();
   const { search } = useSearch({ strict: false });
-  const [searchTerm, setSearchTerm] = useState(search ?? '');
+  const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearch = useDebounce(searchTerm, DEFAULT_DEBOUNCE_TIME);
+
+  useEffect(() => {
+    setSearchTerm(search ?? '');
+  }, [search]);
 
   useEffect(() => {
     const searchParams = debouncedSearch
@@ -19,7 +23,8 @@ export const CharacterSearch = ({ to = '/' }: { to?: string }): ReactNode => {
       to,
       search: searchParams,
     });
-  }, [to, debouncedSearch, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearch]);
 
   const searchFieldOnChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);
