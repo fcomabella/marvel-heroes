@@ -7,3 +7,5 @@ export * from './get-character-result';
 export * from './get-favorites-fn';
 export * from './search-characters-fn';
 export * from './search-characters-result';
+export * from './set-is-favorite-fn';
+export * from './unset-is-favorite-fn';

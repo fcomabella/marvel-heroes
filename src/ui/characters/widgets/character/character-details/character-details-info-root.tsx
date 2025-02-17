@@ -7,4 +7,5 @@ export const CharacterDetailsInfoRoot = styled('div')({
   paddingTop: '48px',
   paddingBottom: '48px',
   paddingLeft: '48px',
+  flexGrow: 1,
 });

@@ -1,5 +1,5 @@
 import { SearchCharactersUseCaseResult } from '@core/characters/application/models';
-import { CharactersRepositoryResult } from '@core/characters/domain/models';
+import { CharactersRepositoryResult } from '@core/characters/domain/ports';
 
 export const SearchCharacters = ({
   charactersRepository,

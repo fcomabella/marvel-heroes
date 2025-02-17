@@ -7,3 +7,5 @@ export * from './get-character-controller-result';
 export * from './get-favorites-count-controller-result';
 export * from './search-characters-controller-result';
 export * from './search-favorites-controller-result';
+export * from './set-is-favorite-controller-result';
+export * from './unset-is-favorite-controller-result';

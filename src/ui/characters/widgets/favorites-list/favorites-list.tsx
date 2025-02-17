@@ -1,5 +1,5 @@
 import { useFavoritesContext } from '@ui/characters/contexts/favorites';
-import { CharacterCard } from '@ui/components/character-card';
+import { CharacterCard } from '@ui/characters/widgets/character-card';
 import { FavoritesListContainer } from './favorites-list-container';
 import { ReactNode } from 'react';
 
