@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-export const ComicsRoot = styled('div')({
-  maxWidth: '960px',
+export const ComicsRoot = styled('div')(({ theme }) => ({
+  maxWidth: theme.sizing(120),
   margin: 'auto',
   display: 'flex',
   flexDirection: 'column',
-  paddingTop: '48px',
-  paddingBottom: '48px',
-  gap: '24px',
-});
+  paddingTop: theme.sizing(6),
+  paddingBottom: theme.sizing(6),
+  gap: theme.sizing(3),
+}));

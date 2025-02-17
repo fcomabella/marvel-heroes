@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-export const CharacterDetailsName = styled('h2')({
-  fontWeight: 700,
+export const CharacterDetailsName = styled('h2')(({ theme }) => ({
+  fontWeight: theme.typography.wheight.bolder,
   textTransform: 'uppercase',
-  color: '#fff',
-  fontSize: '2.5rem',
-});
+  color: theme.typography.color.inverted,
+  fontSize: theme.sizing(5),
+}));

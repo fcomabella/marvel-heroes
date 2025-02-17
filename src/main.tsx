@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { CssReset } from '@ui/components/css-reset';
 import '@fontsource/roboto-condensed/400.css';
+import { ThemeProvider } from '@emotion/react';
+import { theme } from '@ui/theme';
 
 const rootElement = document.createElement('div');
 rootElement.setAttribute('id', 'root');
@@ -28,9 +30,11 @@ declare module '@tanstack/react-router' {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <CssReset />
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <ThemeProvider theme={theme}>
+        <CssReset />
+        <RouterProvider router={router} />
+      </ThemeProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   </StrictMode>

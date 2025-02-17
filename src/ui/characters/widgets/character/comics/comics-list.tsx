@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
-export const ComicsList = styled('div')({
+export const ComicsList = styled('div')(({ theme }) => ({
   display: 'flex',
-  gap: '16px',
+  gap: theme.sizing(2),
   overflowX: 'auto',
   '&::-webkit-scrollbar': {
-    height: '4px',
+    height: theme.sizing(0.5),
   },
   '&::-webkit-scrollbar-thumb': {
-    background: '#EC1D24',
+    background: theme.colors.marvelRed,
   },
   '&::-webkit-scrollbar-track': {
-    background: '#D9D9D9',
+    background: theme.colors.scrollBg,
   },
-});
+}));

@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
-export const CharacterDetailsRoot = styled('div')({
+export const CharacterDetailsRoot = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   background: `
     linear-gradient(
       135deg,
       transparent 50%,
-    #ffffff 50%
+    ${theme.colors.light} 50%
     ),
     linear-gradient(
-    #000000 0%,
-    #000000 100%
+    ${theme.colors.dark} 0%,
+    ${theme.colors.dark} 100%
     )
   `,
-  backgroundSize: '24px 24px, cover',
+  backgroundSize: `${theme.sizing(3, 3)}, cover`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'bottom right',
-});
+}));

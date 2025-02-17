@@ -2,22 +2,24 @@ import styled from '@emotion/styled';
 import { HeaderRootProps } from './header-root-props';
 
 export const HeaderRoot = styled('header')<HeaderRootProps>(
-  ({ isLoading = false }) => ({
-    padding: '16px',
+  ({ theme, isLoading = false }) => ({
+    padding: theme.sizing(2),
     background: `
       linear-gradient(
-      #ff0000 0%,
-      #ff0000 100%
+        ${theme.colors.marvelRed} 0%,
+        ${theme.colors.marvelRed} 100%
       ),
       linear-gradient(
-      #000000 0%,
-      #000000 100%
+        ${theme.colors.dark} 0%,
+        ${theme.colors.dark} 100%
       )
     `,
-    backgroundSize: isLoading ? 'auto 6px, cover' : 'auto 0, cover',
+    backgroundSize: isLoading
+      ? `auto ${theme.sizing(0.75)}, cover`
+      : 'auto 0, cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'bottom',
-    color: '#ffffff',
+    color: theme.typography.color.inverted,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

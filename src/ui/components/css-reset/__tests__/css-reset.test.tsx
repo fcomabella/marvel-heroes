@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render } from '@__tests__/render';
 import { CssReset } from '../css-reset';
 
 describe('CssReset component', () => {

@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { Favorites } from '../favorites';
+import { render } from '@__tests__/render';
 
 describe('Favorites component', () => {
   it('Should render', () => {

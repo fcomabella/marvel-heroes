@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { SearchField } from '../search-field';
 import { userEvent } from '@testing-library/user-event';
+import { render } from '@__tests__/render';
 
 describe('SearchField component', () => {
   it('Should render', () => {

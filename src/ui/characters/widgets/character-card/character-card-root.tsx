@@ -1,28 +1,28 @@
 import styled from '@emotion/styled';
 
-export const CharacterCardRoot = styled('div')({
-  height: '248px',
-  width: '172px',
+export const CharacterCardRoot = styled('div')(({ theme }) => ({
+  height: theme.sizing(31),
+  width: theme.sizing(21.5),
   display: 'inline-grid',
-  gridTemplateRows: '186px 56px',
-  gridTemplateColumns: '110px 56px',
-  gap: '6px',
+  gridTemplateRows: theme.sizing(23.25, 7),
+  gridTemplateColumns: theme.sizing(13.75, 7),
+  gap: theme.sizing(0.75),
   background: `
     linear-gradient(
       135deg,
       transparent 50%,
-    #ffffff 50%
+    ${theme.colors.light} 50%
     ),
     linear-gradient(
-    #000000 0%,
-    #000000 100%
+    ${theme.colors.dark} 0%,
+    ${theme.colors.dark} 100%
     ),
     linear-gradient(
-    #ff0000 0%,
-    #ff0000 100%
+    ${theme.colors.marvelRed} 0%,
+    ${theme.colors.marvelRed} 100%
     )
   `,
-  backgroundSize: '12px 12px, auto 56px, cover',
+  backgroundSize: `${theme.sizing(1.5, 1.5)}, auto ${theme.sizing(7)}, cover`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'bottom right',
   transition: 'background-size 0.3s ease-in-out',
@@ -32,20 +32,20 @@ export const CharacterCardRoot = styled('div')({
         linear-gradient(
           135deg,
           transparent 50%,
-        #ffffff 50%
+        ${theme.colors.light} 50%
         ),
         linear-gradient(
-        #000000 0%,
-        #000000 100%
+        ${theme.colors.dark} 0%,
+        ${theme.colors.dark} 100%
         ),
         linear-gradient(
-        #ff0000 0%,
-        #ff0000 100%
+        ${theme.colors.marvelRed} 0%,
+        ${theme.colors.marvelRed} 100%
         )
       `,
-    backgroundSize: '12px 12px, auto 0, cover',
+    backgroundSize: `${theme.sizing(1.5, 1.5)}, auto 0, cover`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'bottom right',
     transition: 'background-size 0.3s ease-in-out',
   },
-});
+}));

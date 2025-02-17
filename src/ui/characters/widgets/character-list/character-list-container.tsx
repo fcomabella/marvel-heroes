@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-export const CharacterListContainer = styled('div')({
+export const CharacterListContainer = styled('div')(({ theme }) => ({
   display: 'flex',
-  gap: '16px',
+  gap: theme.sizing(2),
   flexWrap: 'wrap',
-});
+}));

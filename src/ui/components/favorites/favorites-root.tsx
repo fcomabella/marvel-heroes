@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-export const FavoritesRoot = styled('div')({
+export const FavoritesRoot = styled('div')(({ theme }) => ({
   display: 'inline-flex',
-  gap: '8px',
-  padding: '8px',
+  gap: theme.sizing(1),
+  padding: theme.sizing(1),
   alignItems: 'center',
-});
+}));

@@ -1,9 +1,10 @@
+import { render } from '@__tests__/render';
 import {
   QueryClient,
   QueryClientConfig,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import { RenderOptions, RenderResult } from '@testing-library/react';
 import { ReactNode } from 'react';
 
 export interface RenderWithQueryProviderOptions extends RenderOptions {

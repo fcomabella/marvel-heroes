@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-export const CharacterDetailsInfoRoot = styled('div')({
+export const CharacterDetailsInfoRoot = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: '24px',
-  paddingTop: '48px',
-  paddingBottom: '48px',
-  paddingLeft: '48px',
+  gap: theme.sizing(3),
+  paddingTop: theme.sizing(6),
+  paddingBottom: theme.sizing(6),
+  paddingLeft: theme.sizing(6),
   flexGrow: 1,
-});
+}));
