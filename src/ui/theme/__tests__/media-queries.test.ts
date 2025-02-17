@@ -5,21 +5,21 @@ describe('Media queries', () => {
   it('should render min-width', () => {
     const query = up('tablet', theme);
     expect(query).toEqual(
-      `@media only screeen and (min-width: ${theme.breakpoints['tablet']}px)`
+      `@media (min-width: ${theme.breakpoints['tablet']}px)`
     );
   });
 
   it('should render max-width', () => {
     const query = down('tablet', theme);
     expect(query).toEqual(
-      `@media only screeen and (max-width: ${theme.breakpoints['tablet']}px)`
+      `@media (max-width: ${theme.breakpoints['tablet']}px)`
     );
   });
 
   it('should render min-width and max-width', () => {
     const query = between('mobile', 'tablet', theme);
     expect(query).toEqual(
-      `@media only screen and (min-width: ${theme.breakpoints['mobile']}px) and (max-width: ${theme.breakpoints['tablet']}px)`
+      `@media (min-width: ${theme.breakpoints['mobile']}px) and (max-width: ${theme.breakpoints['tablet']}px)`
     );
   });
 

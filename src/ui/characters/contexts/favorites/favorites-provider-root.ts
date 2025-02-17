@@ -5,4 +5,8 @@ export const FavoritesProviderRoot = styled('main')(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.sizing(3),
   padding: theme.sizing(6),
+
+  [theme.mediaQueries.down('mobile')]: {
+    padding: theme.sizing(2),
+  },
 }));

@@ -11,16 +11,16 @@ declare module '@emotion/react' {
     mediaQueries: {
       up: (
         breakpoint: keyof BaseTheme['breakpoints'],
-        theme: BaseTheme
+        theme?: BaseTheme
       ) => string;
       down: (
         breakpoint: keyof BaseTheme['breakpoints'],
-        theme: BaseTheme
+        theme?: BaseTheme
       ) => string;
       between: (
         start: keyof BaseTheme['breakpoints'],
         end: keyof BaseTheme['breakpoints'],
-        theme: BaseTheme
+        theme?: BaseTheme
       ) => string;
     };
   }

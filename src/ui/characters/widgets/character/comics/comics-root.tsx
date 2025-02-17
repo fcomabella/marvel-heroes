@@ -5,7 +5,10 @@ export const ComicsRoot = styled('div')(({ theme }) => ({
   margin: 'auto',
   display: 'flex',
   flexDirection: 'column',
-  paddingTop: theme.sizing(6),
-  paddingBottom: theme.sizing(6),
+  padding: theme.sizing(6),
   gap: theme.sizing(3),
+
+  [theme.mediaQueries.down('mobile')]: {
+    padding: theme.sizing(2),
+  },
 }));

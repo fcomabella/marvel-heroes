@@ -8,4 +8,8 @@ export const CharacterDetailsInfoRoot = styled('div')(({ theme }) => ({
   paddingBottom: theme.sizing(6),
   paddingLeft: theme.sizing(6),
   flexGrow: 1,
+
+  [theme.mediaQueries.down('tablet')]: {
+    paddingLeft: 0,
+  },
 }));
