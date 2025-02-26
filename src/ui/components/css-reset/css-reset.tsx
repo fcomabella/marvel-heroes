@@ -4,62 +4,52 @@ import { ReactNode } from 'react';
 export const CssReset = (): ReactNode => (
   <Global
     styles={(theme) => ({
-      [`html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video`]: {
-        margin: 0,
-        padding: 0,
-        border: 0,
-        fontSize: '100%',
-        font: 'inherit',
-        verticalAlign: 'baseline',
+      ':root': {
+        fontFamily: '"Roboto", sans-serif',
+        lineHeight: 1.5,
+        fontSynthesis: 'none',
+        textRendering: 'optimizeLegibility',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
       },
-      [`article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section`]: {
-        display: 'block',
+
+      '*, *::before, *::after': {
+        boxSizing: 'border-box',
+      },
+
+      '*': {
+        margin: 0,
       },
       body: {
-        lineHeight: 1,
+        lineHeight: 1.5,
+        backgroundColor: theme.colors.light,
       },
-      'ol, ul': {
-        listStyle: 'none',
+
+      'img, picture, video, canvas, svg': {
+        display: 'block',
+        maxWidth: '100%',
       },
-      'blockquote, q': {
-        quotes: 'none',
+
+      'input,button,textarea,select': {
+        font: 'inherit',
       },
-      [`blockquote:before, blockquote:after,
-q:before, q:after`]: {
-        content: 'none',
+
+      'p, h1, h2, h3, h4, h5, h6': {
+        overflowWrap: 'break-word',
       },
-      table: {
-        borderCollapse: 'collapse',
-        borderSpacing: 0,
+
+      p: {
+        textWrap: 'pretty',
       },
-      '*, *::after, *::before': {
-        boxSizing: 'border-box',
-        MozOsxFontSmoothing: 'grayscale',
-        WebkitFontSmoothing: 'antialiased',
-        fontSmoothing: 'antialiased',
-      },
-      ':root': {
-        fontFamily: 'Roboto condensed, sans-serif',
-      },
-      pre: {
-        fontFamily: 'monospace',
-      },
+
       a: {
         color: theme.typography.color.inverted,
         textDecoration: 'none',
+      },
+
+      'h1, h2, h3, h4, h5, h6': {
+        textWrap: 'balance',
+        fontWeight: 'bold',
       },
     })}
   />
