@@ -5,6 +5,7 @@ import {
 import { Character, Comic } from '@core/characters/domain/models';
 import { GetCharacterResult } from '@core/characters/domain/ports/get-character-result';
 import {
+  CharacterSummary,
   ComicDetails,
   GetCharacterControllerResult,
 } from '@ui/characters/models';
@@ -36,23 +37,23 @@ const mapComic = ({ id, title, thumbnail, dates }: Comic): ComicDetails => {
 
 const mapCharacter = (
   character: Character,
-  favorites: Array<number>
+  favorites: Array<CharacterSummary>
 ): CharacterDetails => {
   const { id, description, name, thumbnail } = character;
-  const favoritesSet = new Set(favorites);
+  const favoritesSet = new Set(favorites.map(({ id }) => id));
 
   return {
     id,
     description,
     name,
     thumbnail: getImageUrl(thumbnail, 'portrait_uncanny'),
-    isFavorite: favoritesSet.has(id),
+    isFavorite: favoritesSet.has(character.id),
   };
 };
 
 const mapper = (
   getCharacterDto: GetCharacterResult,
-  favoritesDto: Array<number>
+  favoritesDto: Array<CharacterSummary>
 ): GetCharacterControllerResponse => {
   const {
     character: { results: characters },

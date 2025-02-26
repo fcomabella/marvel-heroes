@@ -1,1 +1,3 @@
-export type UnSetIsFavoriteFn = (id: number) => Promise<void>;
+import { CharacterSummary } from '@core/characters/domain/models';
+
+export type UnSetIsFavoriteFn = (character: CharacterSummary) => Promise<void>;

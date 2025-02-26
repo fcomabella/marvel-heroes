@@ -20,6 +20,7 @@ describe('SearchCharactersController', () => {
     });
 
     searchCharactersUseCaseMock.mockResolvedValueOnce(characterList);
+    getFavoritesUseCaseMock.mockResolvedValueOnce([]);
 
     const expected: CharacterList = {
       results: characterList.count,

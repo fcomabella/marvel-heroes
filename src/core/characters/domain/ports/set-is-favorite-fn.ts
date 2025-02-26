@@ -1,1 +1,3 @@
-export type SetIsFavoriteFn = (id: number) => Promise<void>;
+import { CharacterSummary } from '@core/characters/domain/models';
+
+export type SetIsFavoriteFn = (character: CharacterSummary) => Promise<void>;

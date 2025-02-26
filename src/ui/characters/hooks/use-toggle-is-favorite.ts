@@ -37,21 +37,23 @@ export const useToggleIsFavorite = (): ((
   );
 
   const { mutate: setIsFavorite } = useMutation({
-    mutationFn: (id: number) => setIsFavoriteController(id),
+    mutationFn: (character: CharacterSummary) =>
+      setIsFavoriteController(character),
     onSuccess: invalidateQueries,
   });
 
   const { mutate: unsetIsFavorite } = useMutation({
-    mutationFn: (id: number) => unsetIsFavoriteController(id),
+    mutationFn: (character: CharacterSummary) =>
+      unsetIsFavoriteController(character),
     onSuccess: invalidateQueries,
   });
 
   return useCallback(
     (character: CharacterSummary | CharacterDetails): void => {
       if (character.isFavorite) {
-        unsetIsFavorite(character.id);
+        unsetIsFavorite(character);
       } else {
-        setIsFavorite(character.id);
+        setIsFavorite(character);
       }
     },
     [setIsFavorite, unsetIsFavorite]

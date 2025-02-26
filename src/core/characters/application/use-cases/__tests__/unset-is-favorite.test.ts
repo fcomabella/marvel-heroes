@@ -3,7 +3,7 @@ import {
   charactersRepositoryMock,
   unsetIsFavoriteMock,
 } from '@core/characters/domain/ports/__mocks__/characters-repository-mock';
-import { faker } from '@faker-js/faker';
+import { CharacterSummaryMother } from '@ui/characters/models/__tests__/character-summary-mother';
 
 describe('UnsetIsFavorite use case', () => {
   it('Should be a function', () => {
@@ -19,13 +19,13 @@ describe('UnsetIsFavorite use case', () => {
   });
 
   it('Should call the setIsFavorite method with the id', () => {
-    const id = faker.number.int();
+    const character = CharacterSummaryMother();
     const useCase = UnsetIsFavorite({
       charactersRepository: charactersRepositoryMock,
     });
 
-    useCase(id);
+    useCase(character);
 
-    expect(unsetIsFavoriteMock).toHaveBeenCalledWith(id);
+    expect(unsetIsFavoriteMock).toHaveBeenCalledWith(character);
   });
 });

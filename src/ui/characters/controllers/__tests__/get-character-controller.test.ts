@@ -30,6 +30,8 @@ describe('GetCharacterController', () => {
       comics: comicContainer,
     });
 
+    getFavoritesUseCaseMock.mockResolvedValueOnce([]);
+
     const {
       results: [{ description, id, name, thumbnail }],
     } = characterContainer;
@@ -91,6 +93,7 @@ describe('GetCharacterController', () => {
       character: characterContainer,
       comics: comicContainer,
     });
+    getFavoritesUseCaseMock.mockResolvedValueOnce([]);
 
     const result = await getCharacterController(
       characterContainer.results[0].id.toString()

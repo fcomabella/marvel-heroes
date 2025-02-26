@@ -7,8 +7,8 @@ import {
   FAVORITE_CHARACTERS_KEY,
 } from '@core/characters/infrastructure/constants';
 import { ComicMother } from '@core/characters/domain/models/__mocks__/comic-mother';
-import { faker } from '@faker-js/faker';
 import { CharacterSummaryMother } from '@ui/characters/models/__tests__/character-summary-mother';
+import { CharacterSummary } from '@core/characters/domain/models';
 
 const fetchFnMock = vi.fn<(url: URL) => Promise<unknown>>(async () =>
   WrapperMother(CharacterMother)
@@ -176,7 +176,7 @@ describe('RestCharactersRepository', () => {
     });
 
     it('Should return the favorites as an array', async () => {
-      const value: Array<number> = [faker.number.int()];
+      const value: Array<CharacterSummary> = [CharacterSummaryMother()];
 
       const spy = vi.spyOn(Storage.prototype, 'getItem');
       spy.mockReturnValueOnce(JSON.stringify(value));
@@ -205,11 +205,11 @@ describe('RestCharactersRepository', () => {
       const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
 
       const spy = vi.spyOn(Storage.prototype, 'setItem');
-      await repository.setIsFavorite(character.id);
+      await repository.setIsFavorite(character);
 
       expect(spy).toHaveBeenCalledWith(
         FAVORITE_CHARACTERS_KEY,
-        JSON.stringify([character.id])
+        JSON.stringify([character])
       );
     });
 
@@ -229,16 +229,16 @@ describe('RestCharactersRepository', () => {
       const character2 = CharacterSummaryMother();
 
       const getSpy = vi.spyOn(Storage.prototype, 'getItem');
-      getSpy.mockReturnValueOnce(JSON.stringify([character.id, character2.id]));
+      getSpy.mockReturnValueOnce(JSON.stringify([character, character2]));
 
       const repository = RestCharactersRepository({ fetchFn: fetchFnMock });
 
       const setSpy = vi.spyOn(Storage.prototype, 'setItem');
-      await repository.unsetIsFavorite(character.id);
+      await repository.unsetIsFavorite(character);
 
       expect(setSpy).toHaveBeenCalledWith(
         FAVORITE_CHARACTERS_KEY,
-        JSON.stringify([character2.id])
+        JSON.stringify([character2])
       );
     });
 

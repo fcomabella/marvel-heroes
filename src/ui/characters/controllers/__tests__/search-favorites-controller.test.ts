@@ -1,39 +1,23 @@
-import {
-  GetFavoritesUseCaseResult,
-  SearchCharactersUseCaseResult,
-} from '@core/characters/application/models';
-import { CharacterMother } from '@core/characters/domain/models/__mocks__/character-mother';
-import { CharacterList, CharacterSummary } from '@ui/characters/models';
-import { getImageUrl } from '@ui/shared/utils';
+import { GetFavoritesUseCaseResult } from '@core/characters/application/models';
+import { CharacterList } from '@ui/characters/models';
 import { ContainerMother } from '@__mocks__/container-mother';
 import { SearchFavoritesController } from '@ui/characters/controllers/search-favorites-controller';
+import { CharacterSummaryMother } from '@ui/characters/models/__tests__/character-summary-mother';
 
-const searchCharactersUseCaseMock = vi.fn<SearchCharactersUseCaseResult>();
 const getFavoritesUseCaseMock = vi.fn<GetFavoritesUseCaseResult>();
 describe('SearchCharactersController', () => {
   it('Should return the character list', async () => {
-    const characterList = ContainerMother(CharacterMother);
+    const characterList = ContainerMother(CharacterSummaryMother);
 
     const searchCharactersController = SearchFavoritesController({
-      searchCharactersUseCase: searchCharactersUseCaseMock,
       getFavoritesUseCase: getFavoritesUseCaseMock,
     });
 
-    searchCharactersUseCaseMock.mockResolvedValueOnce(characterList);
-    getFavoritesUseCaseMock.mockResolvedValueOnce([
-      characterList.results[0].id,
-    ]);
+    getFavoritesUseCaseMock.mockResolvedValueOnce(characterList.results);
 
     const expected: CharacterList = {
       results: 1,
-      characters: characterList.results.map<CharacterSummary>(
-        ({ id, name, thumbnail }) => ({
-          id,
-          name,
-          isFavorite: true,
-          thumbnail: getImageUrl(thumbnail, 'portrait_fantastic'),
-        })
-      ),
+      characters: characterList.results,
     };
     const result = await searchCharactersController();
 

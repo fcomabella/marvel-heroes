@@ -25,7 +25,7 @@ describe('UseToggleIsFavorite hook', () => {
 
     await waitFor(() => {
       expect(setIsFavoriteControllerMock).toHaveBeenCalledWith(
-        characterSummary.id
+        characterSummary
       );
       expect(unsetIsFavoriteControllerMock).not.toHaveBeenCalled();
       expect(invalidateQueriesMock).toHaveBeenCalledWith({
@@ -53,7 +53,7 @@ describe('UseToggleIsFavorite hook', () => {
 
     await waitFor(() => {
       expect(unsetIsFavoriteControllerMock).toHaveBeenCalledWith(
-        characterSummary.id
+        characterSummary
       );
       expect(setIsFavoriteControllerMock).not.toHaveBeenCalled();
       expect(invalidateQueriesMock).toHaveBeenCalledWith({

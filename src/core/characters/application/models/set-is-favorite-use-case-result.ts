@@ -1,1 +1,5 @@
-export type SetIsFavoriteUseCaseResult = (id: number) => Promise<void>;
+import { CharacterSummary } from '@ui/characters/models';
+
+export type SetIsFavoriteUseCaseResult = (
+  character: CharacterSummary
+) => Promise<void>;

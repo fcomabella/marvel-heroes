@@ -1,1 +1,3 @@
-export type GetFavoritesFn = () => Promise<Array<number>>;
+import { CharacterSummary } from '@core/characters/domain/models';
+
+export type GetFavoritesFn = () => Promise<Array<CharacterSummary>>;

@@ -13,10 +13,10 @@ import { getImageUrl } from '@ui/shared/utils';
 
 const mapper = (
   charactersDto: Container<Character>,
-  favoritesDto: Array<number>
+  favoritesDto: Array<CharacterSummary>
 ): CharacterList => {
   const { count, results } = charactersDto;
-  const favoritesSet = new Set(favoritesDto);
+  const favoritesSet = new Set(favoritesDto.map(({ id }) => id));
 
   return {
     results: count,

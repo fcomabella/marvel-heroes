@@ -14,6 +14,7 @@ import { comicDtoSchema } from '@core/characters/infrastructure/schemas/comic-dt
 import { parseFavorites } from '@core/characters/infrastructure/utils/parse-favorites';
 import { DEFAULT_RETURN_LIMIT } from '@core/shared/infrastructure/constants';
 import { unWrap } from '@core/shared/infrastructure/utils';
+import { CharacterSummary } from '@ui/characters/models';
 
 export const RestCharactersRepository: CharactersRepository = ({ fetchFn }) => {
   return {
@@ -46,35 +47,44 @@ export const RestCharactersRepository: CharactersRepository = ({ fetchFn }) => {
       return unWrap<Comic>(await fetchFn(url), comicDtoSchema);
     },
 
-    getFavorites: async (): Promise<Array<number>> => {
+    getFavorites: async (): Promise<Array<CharacterSummary>> => {
       return parseFavorites(localStorage.getItem(FAVORITE_CHARACTERS_KEY));
     },
 
-    setIsFavorite: async (id: number): Promise<void> => {
+    setIsFavorite: async (character: CharacterSummary): Promise<void> => {
       const favorites = parseFavorites(
         localStorage.getItem(FAVORITE_CHARACTERS_KEY)
       );
-      const favoritesSet = new Set(favorites);
+      const favoritesMap = new Map(
+        favorites.map((characterSummary) => [
+          characterSummary.id,
+          characterSummary,
+        ])
+      );
 
-      favoritesSet.add(id);
+      favoritesMap.set(character.id, character);
 
       localStorage.setItem(
         FAVORITE_CHARACTERS_KEY,
-        JSON.stringify(Array.from(favoritesSet))
+        JSON.stringify(Array.from(favoritesMap.values()))
       );
     },
 
-    unsetIsFavorite: async (id: number): Promise<void> => {
+    unsetIsFavorite: async (character: CharacterSummary): Promise<void> => {
       const favorites = parseFavorites(
         localStorage.getItem(FAVORITE_CHARACTERS_KEY)
       );
-      const favoritesSet = new Set(favorites);
-
-      favoritesSet.delete(id);
+      const favoritesMap = new Map(
+        favorites.map((characterSummary) => [
+          characterSummary.id,
+          characterSummary,
+        ])
+      );
+      favoritesMap.delete(character.id);
 
       localStorage.setItem(
         FAVORITE_CHARACTERS_KEY,
-        JSON.stringify(Array.from(favoritesSet))
+        JSON.stringify(Array.from(favoritesMap.values()))
       );
     },
   };
