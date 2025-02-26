@@ -26,6 +26,9 @@ describe('SetIsFavorite use case', () => {
 
     useCase(character);
 
-    expect(setIsFavoriteMock).toHaveBeenCalledWith(character);
+    expect(setIsFavoriteMock).toHaveBeenCalledWith({
+      ...character,
+      isFavorite: true,
+    });
   });
 });
