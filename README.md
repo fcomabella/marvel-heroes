@@ -129,3 +129,17 @@ Below is an example of the folder structure.
 To manage the state sync between server and client whe use [Tanstack Query](https://tanstack.com/query/latest) as an async state manager. This election allow us to change how we persist the data easily. Currently we use localstorage to manage the Favorita characters. We could change this to use some kind of backend server. The only modules rthat need to change for this operation to be done would be the ones in `src/core/<module>/infrastructure/ports` all the models, use-cases, etc. remain unchanged.
 
 All the client routing necessary is managed by [Tanstack Router](https://tanstack.com/router/latest), using its [file-based routing](https://tanstack.com/router/latest/docs/framework/react/guide/file-based-routing) approach. The route structure is hosted in the `src/routes` folder. The main reason to use Tanstack router is its improve type safety management over other similar tools like [React Router](https://reactrouter.com/).
+
+### Cache management
+
+The application creates a temporary (24h) cache of characters on the browser's local storage.
+
+Each character search is stored as an independent key. This descision allows for a faster retireval of the cache, as the client loads full lists, and is not required to do searches on a potentially large data set.
+
+### Favorite management
+
+The favorite characters feature is also stored in the LocalStorage. This time only a key is used. The favorites list is stored as a JSON Array containing only a Summary of the character data to display the list.
+
+## Production preview
+
+There is a production preview available at [https://marvel-heroes-c9jqn.ondigitalocean.app/](https://marvel-heroes-c9jqn.ondigitalocean.app/)
