@@ -20,7 +20,11 @@ export const SearchFavoritesController = ({
         return 0;
       })
       .filter((character) =>
-        search ? character.name.startsWith(search) : true
+        search
+          ? character.name
+              .toLocaleLowerCase()
+              .startsWith(search.toLocaleLowerCase())
+          : true
       )
       .slice(0, limit);
 
