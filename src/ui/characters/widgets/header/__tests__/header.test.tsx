@@ -27,7 +27,7 @@ describe('Header component', () => {
 
     await waitFor(() =>
       expect(window.getComputedStyle(headerRoot)).toEqual(
-        expect.objectContaining({ 'background-size': 'auto 0.375rem,cover' })
+        expect.objectContaining({ 'background-size': '400% 0.375rem,cover' })
       )
     );
   });
