@@ -13,7 +13,7 @@ export const comicDtoSchema = z.object({
   id: z.number().positive(),
   digitalId: z.number().nonnegative(),
   title: z.string(),
-  issueNumber: z.number().nonnegative(),
+  issueNumber: z.number(),
   variantDescription: z.string(),
   description: z.string().nullable(),
   modified: z.string(),
